@@ -352,7 +352,7 @@ const treinos = {
   // ══════════════════════════════════════════════════════════
   //  MASCULINO — INICIANTE
   // ══════════════════════════════════════════════════════════
-  M_iniciante: {
+  M_iniciante: {,
     descricao: "Full Body 2× por semana. Foco em aprender o movimento.",
     fichas: {
       A: {
@@ -590,7 +590,7 @@ const treinos = {
   // ══════════════════════════════════════════════════════════
   //  MASCULINO — INTERMEDIÁRIO
   // ══════════════════════════════════════════════════════════
-  M_intermediario: {
+  M_intermediario: {,
     descricao: "Divisão ABC. Foco em hipertrofia com sobrecarga progressiva.",
     fichas: {
       A: {
@@ -855,7 +855,7 @@ const treinos = {
   }  // ══════════════════════════════════════════════════════════
   //  MASCULINO — AVANÇADO
   // ══════════════════════════════════════════════════════════
-  M_avancado: {
+  M_avancado: {,
     descricao: "Divisão ABCDE ou Upper/Lower. Alta intensidade e técnicas avançadas.",
     fichas: {
       A: {
