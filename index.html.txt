@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<index.html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -18,7 +18,6 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     body { background:var(--bg); color:var(--texto); font-family:'Segoe UI',sans-serif; min-height:100vh; }
 
-    /* HEADER */
     header {
       background:#111;
       border-bottom:2px solid var(--verde);
@@ -35,7 +34,6 @@
     header h1 { font-size:1.3rem; color:var(--verde); letter-spacing:1px; }
     header p  { font-size:.8rem; color:var(--sub); margin-top:2px; }
 
-    /* NAVEGAÇÃO BREADCRUMB */
     #breadcrumb {
       padding:12px 24px;
       font-size:.82rem; color:var(--sub);
@@ -46,11 +44,9 @@
     #breadcrumb span { color:var(--verde); cursor:pointer; }
     #breadcrumb span:hover { text-decoration:underline; }
 
-    /* TELAS */
     .tela { display:none; padding:28px 20px; max-width:860px; margin:0 auto; }
     .tela.ativa { display:block; }
 
-    /* TÍTULO DE SEÇÃO */
     .sec-title {
       font-size:1.1rem; font-weight:700;
       color:var(--verde); margin-bottom:18px;
@@ -59,10 +55,8 @@
     }
     .sec-sub { color:var(--sub); font-size:.85rem; margin-bottom:22px; margin-top:-12px; }
 
-    /* GRID DE CARDS */
     .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); }
 
-    /* CARD */
     .card {
       background:var(--card);
       border:1px solid var(--borda);
@@ -77,7 +71,6 @@
     .card .nome { font-size:1rem; font-weight:700; color:var(--texto); }
     .card .desc { font-size:.8rem; color:var(--sub); }
 
-    /* FICHAS */
     .ficha-grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); }
     .ficha-card {
       background:var(--card2);
@@ -92,7 +85,6 @@
     .ficha-letra { font-size:2.8rem; font-weight:900; color:var(--verde); }
     .ficha-desc  { font-size:.8rem; color:var(--sub); margin-top:6px; }
 
-    /* EXERCÍCIO */
     .exercicio {
       background:var(--card);
       border:1px solid var(--borda);
@@ -164,7 +156,6 @@
     }
     .ex-erro strong { color:#ff6666; }
 
-    /* MOBILIDADE */
     .mob-card {
       background:var(--card);
       border:1px solid var(--borda);
@@ -180,7 +171,6 @@
     }
     .mob-video iframe { position:absolute; top:0; left:0; width:100%; height:100%; border:0; }
 
-    /* BOTÃO VOLTAR */
     .btn-back {
       display:inline-flex; align-items:center; gap:8px;
       background:transparent; border:1px solid var(--borda);
@@ -191,7 +181,6 @@
     }
     .btn-back:hover { border-color:var(--verde); color:var(--verde); }
 
-    /* BADGE NÍVEL */
     .badge {
       display:inline-block; border-radius:20px;
       padding:3px 12px; font-size:.75rem; font-weight:700;
@@ -290,1525 +279,283 @@
   <div class="sec-title">🧘 Mobilidade & Aquecimento</div>
   <p class="sec-sub">Realize SEMPRE antes do treino. 8–12 minutos são suficientes.</p>
   <div id="container-mobilidade"></div>
-</div><script>
-// ============================================================
-//  ESTADO DA NAVEGAÇÃO
-// ============================================================
+</div>
+
+<script>
 let sexoAtual = '';
 let nivelAtual = '';
 let fichaAtual = '';
 
-// ============================================================
-//  BANCO DE MOBILIDADE
-// ============================================================
 const mobilidade = [
-  {
-    nome: "Mobilidade de Quadril — 90/90",
-    desc: "Excelente para soltar o quadril antes de agachamentos e exercícios de perna.",
-    video: "https://www.youtube.com/embed/o4j_GvBRHMo"
-  },
-  {
-    nome: "Abertura de Torácica com Foam Roller",
-    desc: "Alivia a rigidez da coluna torácica, melhora postura e amplitude nos empurrões.",
-    video: "https://www.youtube.com/embed/6IqrBNFMbeQ"
-  },
-  {
-    nome: "Rotação de Ombro — Band Pull Apart",
-    desc: "Ativa manguito rotador e prepara os ombros para supino e desenvolvimento.",
-    video: "https://www.youtube.com/embed/q5iJr0ILamQ"
-  },
-  {
-    nome: "World's Greatest Stretch",
-    desc: "Movimento completo que mobiliza quadril, torácica e isquiotibiais de uma vez.",
-    video: "https://www.youtube.com/embed/qRmCMOOSBRU"
-  },
-  {
-    nome: "Mobilidade de Tornozelo",
-    desc: "Fundamental para melhorar a profundidade do agachamento.",
-    video: "https://www.youtube.com/embed/WPZ6MNiPsRg"
-  },
-  {
-    nome: "Ativação de Glúteo — Clamshell",
-    desc: "Ativa glúteo médio antes de treinos de perna e evita colapso de joelhos.",
-    video: "https://www.youtube.com/embed/mCsRFCyUQbw"
-  },
-  {
-    nome: "Mobilidade de Coluna — Cat-Cow",
-    desc: "Aquece e lubrifica toda a coluna vertebral.",
-    video: "https://www.youtube.com/embed/kqnua4rHVVA"
-  },
-  {
-    nome: "Rotação de Pescoço e Ombros",
-    desc: "Alivia tensão cervical e prepara trapézio e deltoides.",
-    video: "https://www.youtube.com/embed/2fPiaMFIALk"
-  }
+  { nome:"Mobilidade de Quadril — 90/90", desc:"Excelente para soltar o quadril antes de agachamentos e exercícios de perna.", video:"https://www.youtube.com/embed/o4j_GvBRHMo" },
+  { nome:"Abertura de Torácica com Foam Roller", desc:"Alivia a rigidez da coluna torácica, melhora postura e amplitude nos empurrões.", video:"https://www.youtube.com/embed/6IqrBNFMbeQ" },
+  { nome:"Rotação de Ombro — Band Pull Apart", desc:"Ativa manguito rotador e prepara os ombros para supino e desenvolvimento.", video:"https://www.youtube.com/embed/q5iJr0ILamQ" },
+  { nome:"World's Greatest Stretch", desc:"Movimento completo que mobiliza quadril, torácica e isquiotibiais de uma vez.", video:"https://www.youtube.com/embed/qRmCMOOSBRU" },
+  { nome:"Mobilidade de Tornozelo", desc:"Fundamental para melhorar a profundidade do agachamento.", video:"https://www.youtube.com/embed/WPZ6MNiPsRg" },
+  { nome:"Ativação de Glúteo — Clamshell", desc:"Ativa glúteo médio antes de treinos de perna e evita colapso de joelhos.", video:"https://www.youtube.com/embed/mCsRFCyUQbw" },
+  { nome:"Mobilidade de Coluna — Cat-Cow", desc:"Aquece e lubrifica toda a coluna vertebral.", video:"https://www.youtube.com/embed/kqnua4rHVVA" },
+  { nome:"Rotação de Pescoço e Ombros", desc:"Alivia tensão cervical e prepara trapézio e deltoides.", video:"https://www.youtube.com/embed/2fPiaMFIALk" }
 ];
 
-// ============================================================
-//  BANCO DE TREINOS
-// ============================================================
 const treinos = {
 
-  // ══════════════════════════════════════════════════════════
-  //  MASCULINO — INICIANTE
-  // ══════════════════════════════════════════════════════════
   M_iniciante: {
     descricao: "Full Body 2× por semana. Foco em aprender o movimento.",
     fichas: {
       A: {
         desc: "Full Body A — Segunda / Quinta",
         exercicios: [
-          {
-            nome: "Agachamento Livre com Barra",
-            musculo: "Quadríceps · Glúteos · Core",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/ultWZbUMPL8",
-            passos: [
-              "Posicione a barra na parte alta do trapézio",
-              "Pés na largura dos ombros, ponteiros ligeiramente abertos",
-              "Desça controlando o movimento até as coxas ficarem paralelas ao chão",
-              "Empurre o chão com os pés para subir, joelhos alinhados com os pés"
-            ],
-            dica: "Progrida 2,5kg por semana enquanto a técnica estiver correta.",
-            erro: "Não deixe os joelhos colapsarem para dentro — imagine afastar o chão com os pés."
-          },
-          {
-            nome: "Supino Reto com Barra",
-            musculo: "Peitoral · Tríceps · Deltóide Anterior",
-            series: "3×10",
-            video: "https://www.youtube.com/embed/rT7DgCr-3pg",
-            passos: [
-              "Deite no banco, escápulas retraídas e pés firmes no chão",
-              "Pegada um pouco além da largura dos ombros",
-              "Desça a barra até tocar levemente o peitoral",
-              "Empurre até os braços estendidos sem travar o cotovelo"
-            ],
-            dica: "Mantenha arco natural lombar, não force exagero.",
-            erro: "Não deixe os cotovelos abrirem 90° — mantenha ~75° do tronco."
-          },
-          {
-            nome: "Remada Curvada com Barra",
-            musculo: "Dorsal · Rombóides · Bíceps",
-            series: "3×10",
-            video: "https://www.youtube.com/embed/FWJR5Ve8bnQ",
-            passos: [
-              "Joelhos semiflexionados, tronco inclinado ~45°",
-              "Puxe a barra em direção ao umbigo, cotovelos para trás",
-              "Contraia o dorsal no topo e desça controlando",
-              "Mantenha coluna neutra durante todo o movimento"
-            ],
-            dica: "Pense em 'puxar os cotovelos para o bolso de trás'.",
-            erro: "Não arredonde as costas — é a causa mais comum de lesão."
-          },
-          {
-            nome: "Desenvolvimento com Halteres",
-            musculo: "Deltóide · Tríceps · Trapézio",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/B-aVuyhvLHU",
-            passos: [
-              "Sente no banco com encosto, halteres na altura dos ombros",
-              "Empurre os halteres acima da cabeça sem travar o cotovelo",
-              "Desça controlando até os cotovelos ficarem a 90°",
-              "Mantenha abdômen contraído"
-            ],
-            dica: "Comece leve para aprender o arco de movimento.",
-            erro: "Não empurre para frente — o movimento é vertical."
-          },
-          {
-            nome: "Leg Press 45°",
-            musculo: "Quadríceps · Glúteos · Isquiotibiais",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: [
-              "Pés na largura do quadril no centro da plataforma",
-              "Destrave e desça controlando até ~90° de joelho",
-              "Empurre de volta sem travar o joelho no topo",
-              "Não deixe o glúteo sair do assento"
-            ],
-            dica: "Posição do pé mais alta trabalha mais glúteo; mais baixa, mais quadríceps.",
-            erro: "Nunca trave o joelho na extensão — risco de lesão."
-          },
-          {
-            nome: "Pulldown (Puxador Frontal)",
-            musculo: "Dorsal · Bíceps · Rombóides",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/CAwf7n6Luuc",
-            passos: [
-              "Sente com coxas presas, pegada supinada ou pronada além da largura dos ombros",
-              "Puxe a barra até o queixo, cotovelos apontam para o chão",
-              "Contraia o dorsal no final e suba controlando"
-            ],
-            dica: "Imagine que está tentando dobrar a barra ao puxar — ativa mais o dorsal.",
-            erro: "Não balance o tronco para trás para puxar a carga — perca peso se necessário."
-          },
-          {
-            nome: "Rosca Direta com Barra",
-            musculo: "Bíceps · Braquial",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/kwG2ipFRgfo",
-            passos: [
-              "Em pé, cotovelos junto ao corpo, pegada supinada",
-              "Suba a barra contraindo o bíceps, cotovelos fixos",
-              "Desça lentamente (3 segundos) sem jogar o peso"
-            ],
-            dica: "A fase excêntrica (descida) é onde ocorre mais hipertrofia — não largue.",
-            erro: "Não balance o quadril para impulsionar o peso."
-          },
-          {
-            nome: "Tríceps Pulley (Corda)",
-            musculo: "Tríceps — todas as porções",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/vB5OHsJ3EME",
-            passos: [
-              "Em pé na polia alta, pegue a corda com as duas mãos",
-              "Cotovelos junto ao corpo, empurre a corda para baixo",
-              "Abra levemente as mãos no final para ativar a porção lateral",
-              "Volte controlando sem deixar os cotovelos saírem"
-            ],
-            dica: "Cotovelos fixos = isolamento total do tríceps.",
-            erro: "Não incline o tronco para frente para forçar o peso."
-          }
+          { nome:"Agachamento Livre com Barra", musculo:"Quadríceps · Glúteos · Core", series:"3×12", video:"https://www.youtube.com/embed/ultWZbUMPL8", passos:["Posicione a barra na parte alta do trapézio","Pés na largura dos ombros, ponteiros ligeiramente abertos","Desça controlando o movimento até as coxas ficarem paralelas ao chão","Empurre o chão com os pés para subir, joelhos alinhados com os pés"], dica:"Progrida 2,5kg por semana enquanto a técnica estiver correta.", erro:"Não deixe os joelhos colapsarem para dentro — imagine afastar o chão com os pés." },
+          { nome:"Supino Reto com Barra", musculo:"Peitoral · Tríceps · Deltóide Anterior", series:"3×10", video:"https://www.youtube.com/embed/rT7DgCr-3pg", passos:["Deite no banco, escápulas retraídas e pés firmes no chão","Pegada um pouco além da largura dos ombros","Desça a barra até tocar levemente o peitoral","Empurre até os braços estendidos sem travar o cotovelo"], dica:"Mantenha arco natural lombar, não force exagero.", erro:"Não deixe os cotovelos abrirem 90° — mantenha ~75° do tronco." },
+          { nome:"Remada Curvada com Barra", musculo:"Dorsal · Rombóides · Bíceps", series:"3×10", video:"https://www.youtube.com/embed/FWJR5Ve8bnQ", passos:["Joelhos semiflexionados, tronco inclinado ~45°","Puxe a barra em direção ao umbigo, cotovelos para trás","Contraia o dorsal no topo e desça controlando","Mantenha coluna neutra durante todo o movimento"], dica:"Pense em 'puxar os cotovelos para o bolso de trás'.", erro:"Não arredonde as costas — é a causa mais comum de lesão." },
+          { nome:"Desenvolvimento com Halteres", musculo:"Deltóide · Tríceps · Trapézio", series:"3×12", video:"https://www.youtube.com/embed/B-aVuyhvLHU", passos:["Sente no banco com encosto, halteres na altura dos ombros","Empurre os halteres acima da cabeça sem travar o cotovelo","Desça controlando até os cotovelos ficarem a 90°","Mantenha abdômen contraído"], dica:"Comece leve para aprender o arco de movimento.", erro:"Não empurre para frente — o movimento é vertical." },
+          { nome:"Leg Press 45°", musculo:"Quadríceps · Glúteos · Isquiotibiais", series:"3×15", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Pés na largura do quadril no centro da plataforma","Destrave e desça controlando até ~90° de joelho","Empurre de volta sem travar o joelho no topo","Não deixe o glúteo sair do assento"], dica:"Posição do pé mais alta trabalha mais glúteo; mais baixa, mais quadríceps.", erro:"Nunca trave o joelho na extensão — risco de lesão." },
+          { nome:"Pulldown (Puxador Frontal)", musculo:"Dorsal · Bíceps · Rombóides", series:"3×12", video:"https://www.youtube.com/embed/CAwf7n6Luuc", passos:["Sente com coxas presas, pegada supinada ou pronada além da largura dos ombros","Puxe a barra até o queixo, cotovelos apontam para o chão","Contraia o dorsal no final e suba controlando"], dica:"Imagine que está tentando dobrar a barra ao puxar — ativa mais o dorsal.", erro:"Não balance o tronco para trás para puxar a carga — perca peso se necessário." },
+          { nome:"Rosca Direta com Barra", musculo:"Bíceps · Braquial", series:"3×12", video:"https://www.youtube.com/embed/kwG2ipFRgfo", passos:["Em pé, cotovelos junto ao corpo, pegada supinada","Suba a barra contraindo o bíceps, cotovelos fixos","Desça lentamente (3 segundos) sem jogar o peso"], dica:"A fase excêntrica (descida) é onde ocorre mais hipertrofia — não largue.", erro:"Não balance o quadril para impulsionar o peso." },
+          { nome:"Tríceps Pulley (Corda)", musculo:"Tríceps — todas as porções", series:"3×12", video:"https://www.youtube.com/embed/vB5OHsJ3EME", passos:["Em pé na polia alta, pegue a corda com as duas mãos","Cotovelos junto ao corpo, empurre a corda para baixo","Abra levemente as mãos no final para ativar a porção lateral","Volte controlando sem deixar os cotovelos saírem"], dica:"Cotovelos fixos = isolamento total do tríceps.", erro:"Não incline o tronco para frente para forçar o peso." }
         ]
       },
       B: {
         desc: "Full Body B — Terça / Sexta",
         exercicios: [
-          {
-            nome: "Agachamento Goblet com Halter",
-            musculo: "Quadríceps · Glúteos · Core",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/MxsFDhcyFyE",
-            passos: [
-              "Segure um halter com as duas mãos na frente do peito",
-              "Pés na largura do quadril ou um pouco mais abertos",
-              "Agache profundamente mantendo o tronco ereto",
-              "Cotovelos podem tocar os joelhos para afastá-los"
-            ],
-            dica: "Ótimo exercício para aprender o padrão do agachamento.",
-            erro: "Não deixe o tronco cair para frente — o halter ajuda a contrabalancear."
-          },
-          {
-            nome: "Supino Inclinado com Halteres",
-            musculo: "Peitoral Superior · Deltóide Anterior",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/8iPEnn-ltC8",
-            passos: [
-              "Banco a 30–45°, halteres na altura do peitoral superior",
-              "Empurre até os braços quase estendidos",
-              "Desça controlando, sentindo o alongamento do peitoral",
-              "Mantenha escápulas retraídas durante todo o movimento"
-            ],
-            dica: "30° de inclinação ativa mais o peitoral que 45°.",
-            erro: "Não abra demais os cotovelos — risco para o ombro."
-          },
-          {
-            nome: "Remada na Máquina (Sentado)",
-            musculo: "Dorsal · Rombóides · Bíceps",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/GZbfZ033f74",
-            passos: [
-              "Ajuste o assento para a alça ficar na altura do umbigo",
-              "Puxe a alça em direção ao abdômen, cotovelos para trás",
-              "Comprima as escápulas no final do movimento",
-              "Estenda os braços controlando para voltar"
-            ],
-            dica: "Ótima opção para iniciantes por guiar o movimento.",
-            erro: "Não encurve as costas — mantenha coluna neutra."
-          },
-          {
-            nome: "Elevação Lateral com Halteres",
-            musculo: "Deltóide Lateral",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: [
-              "Em pé, halteres ao lado do corpo",
-              "Levante lateralmente até os braços ficarem paralelos ao chão",
-              "Cotovelos ligeiramente dobrados, polegar ligeiramente para baixo",
-              "Desça lentamente — não 'jogue' os pesos"
-            ],
-            dica: "Peso leve com controle vale mais que peso pesado com balanço.",
-            erro: "Não encolha o trapézio — mantenha ombros para baixo."
-          },
-          {
-            nome: "Extensora de Joelho",
-            musculo: "Quadríceps",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/YyvSfVjQeL0",
-            passos: [
-              "Ajuste o rolinho na frente do tornozelo",
-              "Estenda o joelho completamente, contraia o quadríceps no topo",
-              "Desça lentamente (3 segundos) sem soltar o peso de vez"
-            ],
-            dica: "Use como complemento ao agachamento, nunca o único exercício de quad.",
-            erro: "Não use carga excessiva — risco ao ligamento patelar."
-          },
-          {
-            nome: "Panturrilha em Pé (Smith ou Livre)",
-            musculo: "Gastrocnêmio · Sóleo",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/gwLzBJYoWlI",
-            passos: [
-              "Fique na ponta do degrau ou plataforma com a barra no trapézio",
-              "Suba na ponta do pé ao máximo",
-              "Desça até sentir alongamento no calcanhar",
-              "Pause 1 segundo no topo"
-            ],
-            dica: "Panturrilha responde melhor a volume alto — 4×20 é ideal.",
-            erro: "Não quique — movimento controlado em todas as fases."
-          },
-          {
-            nome: "Rosca Martelo com Halteres",
-            musculo: "Bíceps · Braquiorradial",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/zC3nLlEvin4",
-            passos: [
-              "Em pé, halteres com pegada neutra (polegar para cima)",
-              "Suba alternado ou simultaneamente",
-              "Mantenha cotovelos fixos ao lado do corpo"
-            ],
-            dica: "Trabalha o braquiorradial — dá espessura ao antebraço.",
-            erro: "Não gire o pulso — mantenha pegada neutra."
-          },
-          {
-            nome: "Abdominal Crunch na Polia Alta",
-            musculo: "Reto Abdominal · Core",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/bk0IjkWfbvg",
-            passos: [
-              "Ajoelhe de frente à polia, corda atrás da cabeça",
-              "Contraia o abdômen puxando os cotovelos em direção aos joelhos",
-              "Segure 1 segundo na contração e suba controlando"
-            ],
-            dica: "Melhor que o crunch no chão para sobrecarga progressiva.",
-            erro: "Não puxe com os braços — o movimento vem do abdômen."
-          }
+          { nome:"Agachamento Goblet com Halter", musculo:"Quadríceps · Glúteos · Core", series:"3×12", video:"https://www.youtube.com/embed/MxsFDhcyFyE", passos:["Segure um halter com as duas mãos na frente do peito","Pés na largura do quadril ou um pouco mais abertos","Agache profundamente mantendo o tronco ereto","Cotovelos podem tocar os joelhos para afastá-los"], dica:"Ótimo exercício para aprender o padrão do agachamento.", erro:"Não deixe o tronco cair para frente — o halter ajuda a contrabalancear." },
+          { nome:"Supino Inclinado com Halteres", musculo:"Peitoral Superior · Deltóide Anterior", series:"3×12", video:"https://www.youtube.com/embed/8iPEnn-ltC8", passos:["Banco a 30–45°, halteres na altura do peitoral superior","Empurre até os braços quase estendidos","Desça controlando, sentindo o alongamento do peitoral","Mantenha escápulas retraídas durante todo o movimento"], dica:"30° de inclinação ativa mais o peitoral que 45°.", erro:"Não abra demais os cotovelos — risco para o ombro." },
+          { nome:"Remada na Máquina (Sentado)", musculo:"Dorsal · Rombóides · Bíceps", series:"3×12", video:"https://www.youtube.com/embed/GZbfZ033f74", passos:["Ajuste o assento para a alça ficar na altura do umbigo","Puxe a alça em direção ao abdômen, cotovelos para trás","Comprima as escápulas no final do movimento","Estenda os braços controlando para voltar"], dica:"Ótima opção para iniciantes por guiar o movimento.", erro:"Não encurve as costas — mantenha coluna neutra." },
+          { nome:"Elevação Lateral com Halteres", musculo:"Deltóide Lateral", series:"3×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Em pé, halteres ao lado do corpo","Levante lateralmente até os braços ficarem paralelos ao chão","Cotovelos ligeiramente dobrados, polegar ligeiramente para baixo","Desça lentamente — não 'jogue' os pesos"], dica:"Peso leve com controle vale mais que peso pesado com balanço.", erro:"Não encolha o trapézio — mantenha ombros para baixo." },
+          { nome:"Extensora de Joelho", musculo:"Quadríceps", series:"3×15", video:"https://www.youtube.com/embed/YyvSfVjQeL0", passos:["Ajuste o rolinho na frente do tornozelo","Estenda o joelho completamente, contraia o quadríceps no topo","Desça lentamente (3 segundos) sem soltar o peso de vez"], dica:"Use como complemento ao agachamento, nunca o único exercício de quad.", erro:"Não use carga excessiva — risco ao ligamento patelar." },
+          { nome:"Panturrilha em Pé (Smith ou Livre)", musculo:"Gastrocnêmio · Sóleo", series:"4×20", video:"https://www.youtube.com/embed/gwLzBJYoWlI", passos:["Fique na ponta do degrau ou plataforma com a barra no trapézio","Suba na ponta do pé ao máximo","Desça até sentir alongamento no calcanhar","Pause 1 segundo no topo"], dica:"Panturrilha responde melhor a volume alto — 4×20 é ideal.", erro:"Não quique — movimento controlado em todas as fases." },
+          { nome:"Rosca Martelo com Halteres", musculo:"Bíceps · Braquiorradial", series:"3×12", video:"https://www.youtube.com/embed/zC3nLlEvin4", passos:["Em pé, halteres com pegada neutra (polegar para cima)","Suba alternado ou simultaneamente","Mantenha cotovelos fixos ao lado do corpo"], dica:"Trabalha o braquiorradial — dá espessura ao antebraço.", erro:"Não gire o pulso — mantenha pegada neutra." },
+          { nome:"Abdominal Crunch na Polia Alta", musculo:"Reto Abdominal · Core", series:"3×15", video:"https://www.youtube.com/embed/bk0IjkWfbvg", passos:["Ajoelhe de frente à polia, corda atrás da cabeça","Contraia o abdômen puxando os cotovelos em direção aos joelhos","Segure 1 segundo na contração e suba controlando"], dica:"Melhor que o crunch no chão para sobrecarga progressiva.", erro:"Não puxe com os braços — o movimento vem do abdômen." }
         ]
       }
     }
   },
 
-  // ══════════════════════════════════════════════════════════
-  //  MASCULINO — INTERMEDIÁRIO
-  // ══════════════════════════════════════════════════════════
   M_intermediario: {
     descricao: "Divisão ABC. Foco em hipertrofia com sobrecarga progressiva.",
     fichas: {
       A: {
         desc: "Peito + Tríceps + Ombro",
         exercicios: [
-          {
-            nome: "Supino Reto com Barra",
-            musculo: "Peitoral · Tríceps",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/rT7DgCr-3pg",
-            passos: ["Escápulas retraídas, pés no chão","Desça controlando 3s até tocar o peitoral","Empurre explosivamente","Arco lombar natural"],
-            dica: "Teste 1RM e trabalhe com 70–75% da carga máxima.",
-            erro: "Cotovelos não devem abrir além de 75° do tronco."
-          },
-          {
-            nome: "Supino Inclinado com Halteres",
-            musculo: "Peitoral Superior",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/8iPEnn-ltC8",
-            passos: ["Banco a 30°","Halteres com pegada neutra ou pronada","Desça até sentir alongamento profundo no peitoral","Empurre e junte levemente os halteres no topo"],
-            dica: "Amplitude completa = mais fibras recrutadas.",
-            erro: "Não deixe os halteres baterem no topo."
-          },
-          {
-            nome: "Crossover (Polia Alta)",
-            musculo: "Peitoral — porção medial",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/taI4XduLpTk",
-            passos: ["Polias acima da cabeça, 1 passo à frente","Puxe cruzando as mãos à frente do umbigo","Cotovelos levemente dobrados, mantenha assim","Contraia peitoral no cruzamento"],
-            dica: "Exercício de finalização — use carga moderada e foco na contração.",
-            erro: "Não use carga pesada — perde o isolamento."
-          },
-          {
-            nome: "Desenvolvimento com Barra (Smith ou Livre)",
-            musculo: "Deltóide · Trapézio",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/2yjwXTZQDDI",
-            passos: ["Sentado, barra na frente à altura do queixo","Empurre verticalmente","Desça até os cotovelos ficarem a 90°","Mantenha core contraído"],
-            dica: "Smith facilita estabilidade — ótimo para progressão.",
-            erro: "Não leve a barra atrás da cabeça — lesiona o manguito."
-          },
-          {
-            nome: "Elevação Lateral com Halteres",
-            musculo: "Deltóide Lateral",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: ["Em pé ou sentado","Levante lateralmente com cotovelo levemente dobrado","Pare na altura do ombro","Desça 3 segundos"],
-            dica: "Drop set na última série: 3 quedas de carga.",
-            erro: "Não encolha o ombro no topo."
-          },
-          {
-            nome: "Elevação Frontal com Halter",
-            musculo: "Deltóide Anterior",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/hRbfEo_UUxE",
-            passos: ["Alternado, halter sobe à frente até a altura dos olhos","Mantenha o pulso neutro","Desça controlando"],
-            dica: "Não exagere no peso — deltóide anterior já trabalha muito no supino.",
-            erro: "Não balance o tronco para ajudar."
-          },
-          {
-            nome: "Tríceps Testa com Barra EZ",
-            musculo: "Tríceps — porção longa",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/d_KZxkY_0cY",
-            passos: ["Deitado no banco, barra EZ à largura dos ombros","Desça a barra em direção à testa dobrando os cotovelos","Cotovelos apontam para o teto","Estenda de volta"],
-            dica: "Melhor exercício para a porção longa do tríceps.",
-            erro: "Não abra os cotovelos lateralmente."
-          },
-          {
-            nome: "Tríceps Pulley Unilateral",
-            musculo: "Tríceps",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/kiuVA0gs3EI",
-            passos: ["Polia alta, um braço de cada vez","Cotovelo fixo ao lado do corpo","Estenda completamente","Retorne controlando"],
-            dica: "Unilateral permite corrigir assimetrias.",
-            erro: "Não gire o tronco para compensar."
-          },
-          {
-            nome: "Mergulho (Paralelas ou Banco)",
-            musculo: "Tríceps · Peitoral Inferior",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/0326dy_-CzM",
-            passos: ["Nas paralelas, desça até os cotovelos chegarem a 90°","Tronco levemente inclinado para frente","Empurre de volta sem travar o cotovelo"],
-            dica: "Adicione carga com cinto quando chegar a 15 reps limpas.",
-            erro: "Não desça além de 90° se sentir dor no ombro."
-          }
+          { nome:"Supino Reto com Barra", musculo:"Peitoral · Tríceps", series:"4×10", video:"https://www.youtube.com/embed/rT7DgCr-3pg", passos:["Escápulas retraídas, pés no chão","Desça controlando 3s até tocar o peitoral","Empurre explosivamente","Arco lombar natural"], dica:"Teste 1RM e trabalhe com 70–75% da carga máxima.", erro:"Cotovelos não devem abrir além de 75° do tronco." },
+          { nome:"Supino Inclinado com Halteres", musculo:"Peitoral Superior", series:"4×10", video:"https://www.youtube.com/embed/8iPEnn-ltC8", passos:["Banco a 30°","Halteres com pegada neutra ou pronada","Desça até sentir alongamento profundo no peitoral","Empurre e junte levemente os halteres no topo"], dica:"Amplitude completa = mais fibras recrutadas.", erro:"Não deixe os halteres baterem no topo." },
+          { nome:"Crossover (Polia Alta)", musculo:"Peitoral — porção medial", series:"3×15", video:"https://www.youtube.com/embed/taI4XduLpTk", passos:["Polias acima da cabeça, 1 passo à frente","Puxe cruzando as mãos à frente do umbigo","Cotovelos levemente dobrados, mantenha assim","Contraia peitoral no cruzamento"], dica:"Exercício de finalização — use carga moderada e foco na contração.", erro:"Não use carga pesada — perde o isolamento." },
+          { nome:"Desenvolvimento com Barra (Smith ou Livre)", musculo:"Deltóide · Trapézio", series:"4×10", video:"https://www.youtube.com/embed/2yjwXTZQDDI", passos:["Sentado, barra na frente à altura do queixo","Empurre verticalmente","Desça até os cotovelos ficarem a 90°","Mantenha core contraído"], dica:"Smith facilita estabilidade — ótimo para progressão.", erro:"Não leve a barra atrás da cabeça — lesiona o manguito." },
+          { nome:"Elevação Lateral com Halteres", musculo:"Deltóide Lateral", series:"4×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Em pé ou sentado","Levante lateralmente com cotovelo levemente dobrado","Pare na altura do ombro","Desça 3 segundos"], dica:"Drop set na última série: 3 quedas de carga.", erro:"Não encolha o ombro no topo." },
+          { nome:"Elevação Frontal com Halter", musculo:"Deltóide Anterior", series:"3×12", video:"https://www.youtube.com/embed/hRbfEo_UUxE", passos:["Alternado, halter sobe à frente até a altura dos olhos","Mantenha o pulso neutro","Desça controlando"], dica:"Não exagere no peso — deltóide anterior já trabalha muito no supino.", erro:"Não balance o tronco para ajudar." },
+          { nome:"Tríceps Testa com Barra EZ", musculo:"Tríceps — porção longa", series:"4×10", video:"https://www.youtube.com/embed/d_KZxkY_0cY", passos:["Deitado no banco, barra EZ à largura dos ombros","Desça a barra em direção à testa dobrando os cotovelos","Cotovelos apontam para o teto","Estenda de volta"], dica:"Melhor exercício para a porção longa do tríceps.", erro:"Não abra os cotovelos lateralmente." },
+          { nome:"Tríceps Pulley Unilateral", musculo:"Tríceps", series:"3×12", video:"https://www.youtube.com/embed/kiuVA0gs3EI", passos:["Polia alta, um braço de cada vez","Cotovelo fixo ao lado do corpo","Estenda completamente","Retorne controlando"], dica:"Unilateral permite corrigir assimetrias.", erro:"Não gire o tronco para compensar." },
+          { nome:"Mergulho (Paralelas ou Banco)", musculo:"Tríceps · Peitoral Inferior", series:"3×12", video:"https://www.youtube.com/embed/0326dy_-CzM", passos:["Nas paralelas, desça até os cotovelos chegarem a 90°","Tronco levemente inclinado para frente","Empurre de volta sem travar o cotovelo"], dica:"Adicione carga com cinto quando chegar a 15 reps limpas.", erro:"Não desça além de 90° se sentir dor no ombro." }
         ]
       },
       B: {
         desc: "Costas + Bíceps",
         exercicios: [
-          {
-            nome: "Barra Fixa (Pegada Pronada)",
-            musculo: "Dorsal · Bíceps · Rombóides",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/eGo4IYlbE5g",
-            passos: ["Pegada pronada além da largura dos ombros","Puxe até o queixo passar a barra","Cotovelos apontam para o chão","Desça completamente"],
-            dica: "Se não consegue 8 reps, use elástico assistido.",
-            erro: "Não balance o corpo para subir."
-          },
-          {
-            nome: "Remada com Barra (Overhand)",
-            musculo: "Dorsal · Rombóides · Eretores",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/FWJR5Ve8bnQ",
-            passos: ["Tronco a 45°, joelhos semiflexionados","Puxe a barra ao umbigo","Contraia as escápulas no topo","Desça controlando"],
-            dica: "Aumente 2,5kg por semana enquanto a técnica permitir.",
-            erro: "Coluna arredondada é a causa número 1 de hérnia."
-          },
-          {
-            nome: "Pulldown Pegada Supinada",
-            musculo: "Dorsal Médio · Bíceps",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/CAwf7n6Luuc",
-            passos: ["Pegada supinada na largura dos ombros","Puxe até o queixo, cotovelos ao lado do tronco","Contraia dorsal forte no final"],
-            dica: "A pegada supinada aumenta o recrutamento do bíceps.",
-            erro: "Não incline o tronco mais que 15°."
-          },
-          {
-            nome: "Remada Cavalinho (T-Bar)",
-            musculo: "Dorsal Médio · Espessura das Costas",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/j3Igk5nyZE4",
-            passos: ["Use o cantinho da academia ou máquina T-bar","Puxe a carga em direção ao peito","Cotovelos altos para ativar mais o trapézio médio"],
-            dica: "Ótimo para espessura de costas — sinal de treino de qualidade.",
-            erro: "Não curve demais o lombar."
-          },
-          {
-            nome: "Pullover com Halter",
-            musculo: "Dorsal · Serrátil · Tríceps longo",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/FK4rHfHQoMY",
-            passos: ["Deitado atravessado no banco","Halter nas duas mãos acima do peito","Desça atrás da cabeça sentindo o alongamento do dorsal","Suba contraindo o dorsal"],
-            dica: "Inspire na descida para expandir a caixa torácica.",
-            erro: "Não force além da amplitude natural do ombro."
-          },
-          {
-            nome: "Rosca Direta com Barra EZ",
-            musculo: "Bíceps",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/kwG2ipFRgfo",
-            passos: ["Barra EZ reduz tensão no pulso","Cotovelos fixos ao lado","Suba até a contração máxima","Desça 3 segundos"],
-            dica: "Concentre-se em sentir o bíceps — não apenas mover o peso.",
-            erro: "Ombros não devem vir para frente."
-          },
-          {
-            nome: "Rosca Scott com Halter",
-            musculo: "Bíceps — porção curta",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/6jvqAqBvAzs",
-            passos: ["Use o apoio Scott ou a máquina","Cotovelo apoiado, sem trapaça possível","Suba até a contração e desça completamente"],
-            dica: "Exercício de isolamento puro — excelente para peak do bíceps.",
-            erro: "Não trague o cotovelo do apoio ao subir."
-          },
-          {
-            nome: "Rosca Concentrada",
-            musculo: "Bíceps — pico",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/Jvj2wV0vOYU",
-            passos: ["Sentado, cotovelo apoiado na parte interna da coxa","Suba o halter contraindo ao máximo","Desça completamente","Alterne os braços"],
-            dica: "Melhor exercício para o pico do bíceps.",
-            erro: "Não gire o ombro para ajudar."
-          },
-          {
-            nome: "Rosca Inversa (Pegada Pronada)",
-            musculo: "Braquiorradial · Antebraço",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/nOBjEBpzMvk",
-            passos: ["Pegada pronada na barra EZ","Suba controlando sem virar o pulso","Isola o braquiorradial e os extensores do punho"],
-            dica: "Fundamental para completar o desenvolvimento do braço.",
-            erro: "Use menos peso que na rosca direta — é mais difícil."
-          }
+          { nome:"Barra Fixa (Pegada Pronada)", musculo:"Dorsal · Bíceps · Rombóides", series:"4×8", video:"https://www.youtube.com/embed/eGo4IYlbE5g", passos:["Pegada pronada além da largura dos ombros","Puxe até o queixo passar a barra","Cotovelos apontam para o chão","Desça completamente"], dica:"Se não consegue 8 reps, use elástico assistido.", erro:"Não balance o corpo para subir." },
+          { nome:"Remada com Barra (Overhand)", musculo:"Dorsal · Rombóides · Eretores", series:"4×10", video:"https://www.youtube.com/embed/FWJR5Ve8bnQ", passos:["Tronco a 45°, joelhos semiflexionados","Puxe a barra ao umbigo","Contraia as escápulas no topo","Desça controlando"], dica:"Aumente 2,5kg por semana enquanto a técnica permitir.", erro:"Coluna arredondada é a causa número 1 de hérnia." },
+          { nome:"Pulldown Pegada Supinada", musculo:"Dorsal Médio · Bíceps", series:"3×12", video:"https://www.youtube.com/embed/CAwf7n6Luuc", passos:["Pegada supinada na largura dos ombros","Puxe até o queixo, cotovelos ao lado do tronco","Contraia dorsal forte no final"], dica:"A pegada supinada aumenta o recrutamento do bíceps.", erro:"Não incline o tronco mais que 15°." },
+          { nome:"Remada Cavalinho (T-Bar)", musculo:"Dorsal Médio · Espessura das Costas", series:"4×10", video:"https://www.youtube.com/embed/j3Igk5nyZE4", passos:["Use o cantinho da academia ou máquina T-bar","Puxe a carga em direção ao peito","Cotovelos altos para ativar mais o trapézio médio"], dica:"Ótimo para espessura de costas — sinal de treino de qualidade.", erro:"Não curve demais o lombar." },
+          { nome:"Pullover com Halter", musculo:"Dorsal · Serrátil · Tríceps longo", series:"3×12", video:"https://www.youtube.com/embed/FK4rHfHQoMY", passos:["Deitado atravessado no banco","Halter nas duas mãos acima do peito","Desça atrás da cabeça sentindo o alongamento do dorsal","Suba contraindo o dorsal"], dica:"Inspire na descida para expandir a caixa torácica.", erro:"Não force além da amplitude natural do ombro." },
+          { nome:"Rosca Direta com Barra EZ", musculo:"Bíceps", series:"4×10", video:"https://www.youtube.com/embed/kwG2ipFRgfo", passos:["Barra EZ reduz tensão no pulso","Cotovelos fixos ao lado","Suba até a contração máxima","Desça 3 segundos"], dica:"Concentre-se em sentir o bíceps — não apenas mover o peso.", erro:"Ombros não devem vir para frente." },
+          { nome:"Rosca Scott com Halter", musculo:"Bíceps — porção curta", series:"3×12", video:"https://www.youtube.com/embed/6jvqAqBvAzs", passos:["Use o apoio Scott ou a máquina","Cotovelo apoiado, sem trapaça possível","Suba até a contração e desça completamente"], dica:"Exercício de isolamento puro — excelente para peak do bíceps.", erro:"Não trague o cotovelo do apoio ao subir." },
+          { nome:"Rosca Concentrada", musculo:"Bíceps — pico", series:"3×12", video:"https://www.youtube.com/embed/Jvj2wV0vOYU", passos:["Sentado, cotovelo apoiado na parte interna da coxa","Suba o halter contraindo ao máximo","Desça completamente","Alterne os braços"], dica:"Melhor exercício para o pico do bíceps.", erro:"Não gire o ombro para ajudar." },
+          { nome:"Rosca Inversa (Pegada Pronada)", musculo:"Braquiorradial · Antebraço", series:"3×12", video:"https://www.youtube.com/embed/nOBjEBpzMvk", passos:["Pegada pronada na barra EZ","Suba controlando sem virar o pulso","Isola o braquiorradial e os extensores do punho"], dica:"Fundamental para completar o desenvolvimento do braço.", erro:"Use menos peso que na rosca direta — é mais difícil." }
         ]
       },
       C: {
         desc: "Pernas + Abdômen",
         exercicios: [
-          {
-            nome: "Agachamento Livre com Barra",
-            musculo: "Quadríceps · Glúteos · Isquiotibiais",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/ultWZbUMPL8",
-            passos: ["Barra no trapézio alto ou baixo","Desça profundo mantendo coluna neutra","Joelhos alinhados com pés","Suba explosivamente"],
-            dica: "O agachamento é o rei dos exercícios — priorize a técnica.",
-            erro: "Joelhos não podem colapsar para dentro."
-          },
-          {
-            nome: "Leg Press 45°",
-            musculo: "Quadríceps · Glúteos",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: ["Pés na largura do ombro no centro","Desça controlando até 90°","Empurre sem travar o joelho"],
-            dica: "Pés altos = mais glúteo. Pés baixos = mais quad.",
-            erro: "Nunca trave o joelho na extensão completa."
-          },
-          {
-            nome: "Stiff com Barra",
-            musculo: "Isquiotibiais · Glúteos · Eretores",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/1uDiW5--rAE",
-            passos: ["Em pé, joelhos levemente dobrados","Empurre o quadril para trás descendo a barra pelas coxas","Sinta o alongamento dos isquios","Suba contraindo o glúteo"],
-            dica: "Mantenha a barra colada nas pernas durante todo o movimento.",
-            erro: "Não arredonde a lombar — é o principal risco."
-          },
-          {
-            nome: "Hack Agachamento",
-            musculo: "Quadríceps — porção inferior",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/EdtxFSp_zSk",
-            passos: ["Ombros encaixados nos suportes","Pés na largura dos ombros","Desça até ~90° de joelho","Empurre voltando sem travar"],
-            dica: "Pés avançados enfatizam mais o glúteo.",
-            erro: "Não deixe os joelhos passarem muito além da ponta do pé."
-          },
-          {
-            nome: "Mesa Flexora",
-            musculo: "Isquiotibiais",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/ELOCsoDSmrg",
-            passos: ["Deite de bruços, tornozelos sob o rolinho","Flexione o joelho trazendo o calcanhar até o glúteo","Contraia forte no topo","Desça lentamente"],
-            dica: "Varie a posição do pé (neutro, supinado, pronado) para diferentes porções.",
-            erro: "Não deixe o quadril sair da mesa ao subir."
-          },
-          {
-            nome: "Elevação de Panturrilha — Leg Press",
-            musculo: "Gastrocnêmio",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/gwLzBJYoWlI",
-            passos: ["Na máquina Leg Press, coloque apenas as pontas dos pés na plataforma","Empurre subindo na ponta","Desça até alongar o calcanhar"],
-            dica: "Volume alto é essencial para panturrilha.",
-            erro: "Não quique — movimento lento e completo."
-          },
-          {
-            nome: "Abdominais Roda (Ab Wheel)",
-            musculo: "Core completo",
-            series: "3×10",
-            video: "https://www.youtube.com/embed/sxHjqnr_5Q0",
-            passos: ["Ajoelhado, segure a roda com as duas mãos","Estenda o corpo para frente próximo ao chão","Puxe de volta contraindo o abdômen","Mantenha o core tenso o tempo todo"],
-            dica: "Se for difícil, faça em amplitude reduzida inicialmente.",
-            erro: "Não deixe o lombar afundar — mantenha o core ativado."
-          },
-          {
-            nome: "Prancha Lateral",
-            musculo: "Oblíquos · Core Lateral",
-            series: "3×30s cada lado",
-            video: "https://www.youtube.com/embed/_rdfjFSFKMY",
-            passos: ["Apoio no antebraço e lateral do pé","Quadril elevado formando linha reta","Mantenha a posição sem rotação"],
-            dica: "Progrida em tempo: 30s → 45s → 60s.",
-            erro: "Não deixe o quadril cair ou rotacionar."
-          },
-          {
-            nome: "Elevação de Pernas (Barra Fixa)",
-            musculo: "Reto Abdominal Inferior · Flexores do Quadril",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/hdng3Nm1x_E",
-            passos: ["Pendurado na barra fixa","Eleve as pernas até 90° (ou joelhos ao peito para iniciante)","Desça controlando sem balançar"],
-            dica: "Mantenha o movimento sem impulso — abdômen sempre contraído.",
-            erro: "Não use impulso do corpo para subir as pernas."
-          }
+          { nome:"Agachamento Livre com Barra", musculo:"Quadríceps · Glúteos · Isquiotibiais", series:"4×8", video:"https://www.youtube.com/embed/ultWZbUMPL8", passos:["Barra no trapézio alto ou baixo","Desça profundo mantendo coluna neutra","Joelhos alinhados com pés","Suba explosivamente"], dica:"O agachamento é o rei dos exercícios — priorize a técnica.", erro:"Joelhos não podem colapsar para dentro." },
+          { nome:"Leg Press 45°", musculo:"Quadríceps · Glúteos", series:"4×12", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Pés na largura do ombro no centro","Desça controlando até 90°","Empurre sem travar o joelho"], dica:"Pés altos = mais glúteo. Pés baixos = mais quad.", erro:"Nunca trave o joelho na extensão completa." },
+          { nome:"Stiff com Barra", musculo:"Isquiotibiais · Glúteos · Eretores", series:"4×10", video:"https://www.youtube.com/embed/1uDiW5--rAE", passos:["Em pé, joelhos levemente dobrados","Empurre o quadril para trás descendo a barra pelas coxas","Sinta o alongamento dos isquios","Suba contraindo o glúteo"], dica:"Mantenha a barra colada nas pernas durante todo o movimento.", erro:"Não arredonde a lombar — é o principal risco." },
+          { nome:"Hack Agachamento", musculo:"Quadríceps — porção inferior", series:"3×12", video:"https://www.youtube.com/embed/EdtxFSp_zSk", passos:["Ombros encaixados nos suportes","Pés na largura dos ombros","Desça até ~90° de joelho","Empurre voltando sem travar"], dica:"Pés avançados enfatizam mais o glúteo.", erro:"Não deixe os joelhos passarem muito além da ponta do pé." },
+          { nome:"Mesa Flexora", musculo:"Isquiotibiais", series:"3×12", video:"https://www.youtube.com/embed/ELOCsoDSmrg", passos:["Deite de bruços, tornozelos sob o rolinho","Flexione o joelho trazendo o calcanhar até o glúteo","Contraia forte no topo","Desça lentamente"], dica:"Varie a posição do pé (neutro, supinado, pronado) para diferentes porções.", erro:"Não deixe o quadril sair da mesa ao subir." },
+          { nome:"Elevação de Panturrilha — Leg Press", musculo:"Gastrocnêmio", series:"4×20", video:"https://www.youtube.com/embed/gwLzBJYoWlI", passos:["Na máquina Leg Press, coloque apenas as pontas dos pés na plataforma","Empurre subindo na ponta","Desça até alongar o calcanhar"], dica:"Volume alto é essencial para panturrilha.", erro:"Não quique — movimento lento e completo." },
+          { nome:"Abdominais Roda (Ab Wheel)", musculo:"Core completo", series:"3×10", video:"https://www.youtube.com/embed/sxHjqnr_5Q0", passos:["Ajoelhado, segure a roda com as duas mãos","Estenda o corpo para frente próximo ao chão","Puxe de volta contraindo o abdômen","Mantenha o core tenso o tempo todo"], dica:"Se for difícil, faça em amplitude reduzida inicialmente.", erro:"Não deixe o lombar afundar — mantenha o core ativado." },
+          { nome:"Prancha Lateral", musculo:"Oblíquos · Core Lateral", series:"3×30s cada lado", video:"https://www.youtube.com/embed/_rdfjFSFKMY", passos:["Apoio no antebraço e lateral do pé","Quadril elevado formando linha reta","Mantenha a posição sem rotação"], dica:"Progrida em tempo: 30s → 45s → 60s.", erro:"Não deixe o quadril cair ou rotacionar." },
+          { nome:"Elevação de Pernas (Barra Fixa)", musculo:"Reto Abdominal Inferior · Flexores do Quadril", series:"3×12", video:"https://www.youtube.com/embed/hdng3Nm1x_E", passos:["Pendurado na barra fixa","Eleve as pernas até 90° (ou joelhos ao peito para iniciante)","Desça controlando sem balançar"], dica:"Mantenha o movimento sem impulso — abdômen sempre contraído.", erro:"Não use impulso do corpo para subir as pernas." }
         ]
       }
     }
-  }  // ══════════════════════════════════════════════════════════
-  //  MASCULINO — AVANÇADO
-  // ══════════════════════════════════════════════════════════
+  },
+
   M_avancado: {
     descricao: "Divisão ABCDE ou Upper/Lower. Alta intensidade e técnicas avançadas.",
     fichas: {
       A: {
         desc: "Peitoral + Tríceps (Alta Intensidade)",
         exercicios: [
-          {
-            nome: "Supino Reto com Barra — Força",
-            musculo: "Peitoral · Tríceps · Deltóide Anterior",
-            series: "5×5",
-            video: "https://www.youtube.com/embed/rT7DgCr-3pg",
-            passos: ["Trabalhe com 80–85% do 1RM","Pausa de 1s no peito","Explosão na subida","Descanso de 3 min entre séries"],
-            dica: "5×5 é o protocolo de força mais testado e aprovado.",
-            erro: "Nunca treino de força sem spotter ou equipamento de segurança."
-          },
-          {
-            nome: "Supino Declinado com Barra",
-            musculo: "Peitoral Inferior · Tríceps",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/LfyQTYaUkQI",
-            passos: ["Banco a -15 a -30°","Pegada na largura dos ombros","Desça controlando, toque levemente o peitoral baixo","Empurre explosivamente"],
-            dica: "Declinado ativa melhor o peitoral inferior que o paralelas.",
-            erro: "Não desça a barra muito baixo no abdômen."
-          },
-          {
-            nome: "Supino com Halteres — Drop Set",
-            musculo: "Peitoral",
-            series: "3×10 + drop",
-            video: "https://www.youtube.com/embed/VmB1G1K7v94",
-            passos: ["10 reps na carga principal","Imediatamente reduza 20% e faça mais 8","Reduza mais 20% e faça 6","Sem descanso entre as quedas"],
-            dica: "Drop set é técnica avançada — use no máximo 1× por treino.",
-            erro: "Não sacrifique a técnica nas últimas reps do drop."
-          },
-          {
-            nome: "Crossover Baixo (Lower Cable Fly)",
-            musculo: "Peitoral Superior",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/Iwe6AmxVf7o",
-            passos: ["Polias na posição baixa","Puxe em arco cruzando as mãos acima do peito","Cotovelos levemente dobrados","Contraia forte no cruzamento"],
-            dica: "Varie o ângulo para atingir diferentes porções do peitoral.",
-            erro: "Não arredonde os ombros para frente."
-          },
-          {
-            nome: "Mergulho com Carga (Paralelas)",
-            musculo: "Tríceps · Peitoral Inferior",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/0326dy_-CzM",
-            passos: ["Cinto com anilha ou colete com peso","Desça até 90° de cotovelo","Tronco levemente inclinado para frente","Empurre de volta sem travar"],
-            dica: "Se dominar o peso corporal com 15 reps, adicione carga.",
-            erro: "Não desça além de 90° — lesão no ombro."
-          },
-          {
-            nome: "Tríceps Francês (Halteres — Alternado)",
-            musculo: "Tríceps — porção longa",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/d_KZxkY_0cY",
-            passos: ["Deitado, halteres acima dos ombros","Dobre os cotovelos levando os halteres às orelhas","Extensão total","Cotovelos sempre apontando para o teto"],
-            dica: "Halteres permitem maior amplitude que a barra.",
-            erro: "Cotovelos não devem abrir lateralmente."
-          },
-          {
-            nome: "Tríceps Pulley — Superset Corda + Barra",
-            musculo: "Tríceps — todas as porções",
-            series: "3×12+12",
-            video: "https://www.youtube.com/embed/vB5OHsJ3EME",
-            passos: ["12 reps na corda (ativa porção lateral)","Imediatamente troque para barra reta","12 reps na barra (ativa porção medial)","Sem descanso no superset"],
-            dica: "Superset dentro do mesmo músculo é técnica avançada de congestão.",
-            erro: "Não aumente a carga — o objetivo é congestão."
-          },
-          {
-            nome: "Flexão de Braço com Palmas Diamante",
-            musculo: "Tríceps · Peitoral Medial",
-            series: "3× falha",
-            video: "https://www.youtube.com/embed/J0DXl_OeNaw",
-            passos: ["Mãos juntas formando losango sob o peitoral","Desça o peito em direção às mãos","Cotovelos paralelos ao tronco","Empurre até a extensão"],
-            dica: "Excelente finalizador sem equipamento.",
-            erro: "Não deixe os quadris afundarem."
-          }
+          { nome:"Supino Reto com Barra — Força", musculo:"Peitoral · Tríceps · Deltóide Anterior", series:"5×5", video:"https://www.youtube.com/embed/rT7DgCr-3pg", passos:["Trabalhe com 80–85% do 1RM","Pausa de 1s no peito","Explosão na subida","Descanso de 3 min entre séries"], dica:"5×5 é o protocolo de força mais testado e aprovado.", erro:"Nunca treino de força sem spotter ou equipamento de segurança." },
+          { nome:"Supino Declinado com Barra", musculo:"Peitoral Inferior · Tríceps", series:"4×8", video:"https://www.youtube.com/embed/LfyQTYaUkQI", passos:["Banco a -15 a -30°","Pegada na largura dos ombros","Desça controlando, toque levemente o peitoral baixo","Empurre explosivamente"], dica:"Declinado ativa melhor o peitoral inferior que o paralelas.", erro:"Não desça a barra muito baixo no abdômen." },
+          { nome:"Supino com Halteres — Drop Set", musculo:"Peitoral", series:"3×10 + drop", video:"https://www.youtube.com/embed/VmB1G1K7v94", passos:["10 reps na carga principal","Imediatamente reduza 20% e faça mais 8","Reduza mais 20% e faça 6","Sem descanso entre as quedas"], dica:"Drop set é técnica avançada — use no máximo 1× por treino.", erro:"Não sacrifique a técnica nas últimas reps do drop." },
+          { nome:"Crossover Baixo (Lower Cable Fly)", musculo:"Peitoral Superior", series:"4×12", video:"https://www.youtube.com/embed/Iwe6AmxVf7o", passos:["Polias na posição baixa","Puxe em arco cruzando as mãos acima do peito","Cotovelos levemente dobrados","Contraia forte no cruzamento"], dica:"Varie o ângulo para atingir diferentes porções do peitoral.", erro:"Não arredonde os ombros para frente." },
+          { nome:"Mergulho com Carga (Paralelas)", musculo:"Tríceps · Peitoral Inferior", series:"4×8", video:"https://www.youtube.com/embed/0326dy_-CzM", passos:["Cinto com anilha ou colete com peso","Desça até 90° de cotovelo","Tronco levemente inclinado para frente","Empurre de volta sem travar"], dica:"Se dominar o peso corporal com 15 reps, adicione carga.", erro:"Não desça além de 90° — lesão no ombro." },
+          { nome:"Tríceps Francês (Halteres — Alternado)", musculo:"Tríceps — porção longa", series:"4×10", video:"https://www.youtube.com/embed/d_KZxkY_0cY", passos:["Deitado, halteres acima dos ombros","Dobre os cotovelos levando os halteres às orelhas","Extensão total","Cotovelos sempre apontando para o teto"], dica:"Halteres permitem maior amplitude que a barra.", erro:"Cotovelos não devem abrir lateralmente." },
+          { nome:"Tríceps Pulley — Superset Corda + Barra", musculo:"Tríceps — todas as porções", series:"3×12+12", video:"https://www.youtube.com/embed/vB5OHsJ3EME", passos:["12 reps na corda (ativa porção lateral)","Imediatamente troque para barra reta","12 reps na barra (ativa porção medial)","Sem descanso no superset"], dica:"Superset dentro do mesmo músculo é técnica avançada de congestão.", erro:"Não aumente a carga — o objetivo é congestão." },
+          { nome:"Flexão de Braço com Palmas Diamante", musculo:"Tríceps · Peitoral Medial", series:"3× falha", video:"https://www.youtube.com/embed/J0DXl_OeNaw", passos:["Mãos juntas formando losango sob o peitoral","Desça o peito em direção às mãos","Cotovelos paralelos ao tronco","Empurre até a extensão"], dica:"Excelente finalizador sem equipamento.", erro:"Não deixe os quadris afundarem." }
         ]
       },
       B: {
         desc: "Costas + Bíceps (Alta Intensidade)",
         exercicios: [
-          {
-            nome: "Levantamento Terra",
-            musculo: "Cadeia Posterior Completa",
-            series: "5×5",
-            video: "https://www.youtube.com/embed/op9kVnSso6Q",
-            passos: ["Pés na largura do quadril, barra sobre o mediopé","Pegada dupla pronada ou mista","Empurre o chão com os pés — não 'puxe' a barra","Quadril e ombros sobem na mesma velocidade","Trave no topo com glúteo contraído"],
-            dica: "O levantamento terra é o exercício mais completo da musculação.",
-            erro: "Jamais arredonde a lombar — risco real de hérnia."
-          },
-          {
-            nome: "Barra Fixa com Carga",
-            musculo: "Dorsal · Bíceps",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/eGo4IYlbE5g",
-            passos: ["Cinto com anilha","Pegada pronada além dos ombros","Puxe explosivamente até o queixo","Desça completamente controlando"],
-            dica: "Se consegue 10 reps limpas sem carga, adicione anilha.",
-            erro: "Não balance o corpo."
-          },
-          {
-            nome: "Remada Unilateral com Halter",
-            musculo: "Dorsal · Rombóide · Bíceps",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/roCP_TJMiMQ",
-            passos: ["Apoie um joelho e mão no banco","Halter na outra mão, puxe em linha reta até o quadril","Cotovelo aponta para trás e para cima","Contraia forte no topo"],
-            dica: "Permite carga maior que a remada bilateral.",
-            erro: "Não gire o tronco para puxar mais peso."
-          },
-          {
-            nome: "Remada Serrote (Alta Carga)",
-            musculo: "Dorsal — espessura",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/FWJR5Ve8bnQ",
-            passos: ["Barra pesada, tronco a 45°","Puxe explosivamente ao umbigo","Pausa de 1s no topo","Descida de 3 segundos"],
-            dica: "Fase excêntrica lenta = mais hipertrofia.",
-            erro: "Costas arredondadas com carga pesada = lesão garantida."
-          },
-          {
-            nome: "Face Pull com Corda",
-            musculo: "Manguito Rotador · Deltóide Posterior · Trapézio",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/rep-qVOkqgk",
-            passos: ["Polia na altura dos olhos, corda","Puxe a corda em direção ao rosto abrindo os cotovelos para os lados","Polegares apontando para trás no final","Contraia deltóide posterior"],
-            dica: "Exercício preventivo indispensável para saúde do ombro.",
-            erro: "Não use carga pesada — foco é na rotação externa."
-          },
-          {
-            nome: "Rosca 21 com Barra EZ",
-            musculo: "Bíceps — pico + porção curta",
-            series: "3×21",
-            video: "https://www.youtube.com/embed/kwG2ipFRgfo",
-            passos: ["7 reps da metade inferior (0° a 90°)","7 reps da metade superior (90° ao topo)","7 reps amplitude completa","Sem descanso entre as partes"],
-            dica: "Técnica avançada que foca em toda a amplitude do bíceps.",
-            erro: "Use menos carga que o normal — o volume é alto."
-          },
-          {
-            nome: "Rosca Inclinada com Halteres",
-            musculo: "Bíceps — porção longa",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/soxrZlIl35U",
-            passos: ["Banco inclinado a 45°, halteres pendurados","Suba trazendo o halter em supinação total","Cotovelos ficam para trás do corpo no início","Posição de máximo alongamento"],
-            dica: "Máximo alongamento = máximo recrutamento da porção longa.",
-            erro: "Não jogue os cotovelos para frente para compensar."
-          },
-          {
-            nome: "Rosca Bayesian (Polia Baixa)",
-            musculo: "Bíceps — alongamento máximo",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/2qYBWtejDiM",
-            passos: ["Polia baixa, de costas para a máquina","Dê um passo à frente, cotovelo atrás do corpo","Suba o halter/cabo contraindo o bíceps","Posição de maior tensão no alongamento"],
-            dica: "Pesquisas mostram que treino em alongamento maximiza hipertrofia.",
-            erro: "Não avance o cotovelo ao subir."
-          },
-          {
-            nome: "Levantamento Terra Romeno (Unilateral)",
-            musculo: "Isquiotibiais · Glúteo · Lombar",
-            series: "3×10",
-            video: "https://www.youtube.com/embed/2SHsk9AitMA",
-            passos: ["Em pé com 1 halter na mão oposta à perna de apoio","Incline o tronco para frente erguendo a perna traseira","Mantenha coluna neutra","Retorne e repita"],
-            dica: "Ótimo para corrigir desequilíbrios entre os lados.",
-            erro: "Não rotacione o quadril ao subir a perna."
-          }
+          { nome:"Levantamento Terra", musculo:"Cadeia Posterior Completa", series:"5×5", video:"https://www.youtube.com/embed/op9kVnSso6Q", passos:["Pés na largura do quadril, barra sobre o mediopé","Pegada dupla pronada ou mista","Empurre o chão com os pés — não 'puxe' a barra","Quadril e ombros sobem na mesma velocidade","Trave no topo com glúteo contraído"], dica:"O levantamento terra é o exercício mais completo da musculação.", erro:"Jamais arredonde a lombar — risco real de hérnia." },
+          { nome:"Barra Fixa com Carga", musculo:"Dorsal · Bíceps", series:"4×8", video:"https://www.youtube.com/embed/eGo4IYlbE5g", passos:["Cinto com anilha","Pegada pronada além dos ombros","Puxe explosivamente até o queixo","Desça completamente controlando"], dica:"Se consegue 10 reps limpas sem carga, adicione anilha.", erro:"Não balance o corpo." },
+          { nome:"Remada Unilateral com Halter", musculo:"Dorsal · Rombóide · Bíceps", series:"4×10", video:"https://www.youtube.com/embed/roCP_TJMiMQ", passos:["Apoie um joelho e mão no banco","Halter na outra mão, puxe em linha reta até o quadril","Cotovelo aponta para trás e para cima","Contraia forte no topo"], dica:"Permite carga maior que a remada bilateral.", erro:"Não gire o tronco para puxar mais peso." },
+          { nome:"Remada Serrote (Alta Carga)", musculo:"Dorsal — espessura", series:"4×8", video:"https://www.youtube.com/embed/FWJR5Ve8bnQ", passos:["Barra pesada, tronco a 45°","Puxe explosivamente ao umbigo","Pausa de 1s no topo","Descida de 3 segundos"], dica:"Fase excêntrica lenta = mais hipertrofia.", erro:"Costas arredondadas com carga pesada = lesão garantida." },
+          { nome:"Face Pull com Corda", musculo:"Manguito Rotador · Deltóide Posterior · Trapézio", series:"4×15", video:"https://www.youtube.com/embed/rep-qVOkqgk", passos:["Polia na altura dos olhos, corda","Puxe a corda em direção ao rosto abrindo os cotovelos para os lados","Polegares apontando para trás no final","Contraia deltóide posterior"], dica:"Exercício preventivo indispensável para saúde do ombro.", erro:"Não use carga pesada — foco é na rotação externa." },
+          { nome:"Rosca 21 com Barra EZ", musculo:"Bíceps — pico + porção curta", series:"3×21", video:"https://www.youtube.com/embed/kwG2ipFRgfo", passos:["7 reps da metade inferior (0° a 90°)","7 reps da metade superior (90° ao topo)","7 reps amplitude completa","Sem descanso entre as partes"], dica:"Técnica avançada que foca em toda a amplitude do bíceps.", erro:"Use menos carga que o normal — o volume é alto." },
+          { nome:"Rosca Inclinada com Halteres", musculo:"Bíceps — porção longa", series:"4×10", video:"https://www.youtube.com/embed/soxrZlIl35U", passos:["Banco inclinado a 45°, halteres pendurados","Suba trazendo o halter em supinação total","Cotovelos ficam para trás do corpo no início","Posição de máximo alongamento"], dica:"Máximo alongamento = máximo recrutamento da porção longa.", erro:"Não jogue os cotovelos para frente para compensar." },
+          { nome:"Rosca Bayesian (Polia Baixa)", musculo:"Bíceps — alongamento máximo", series:"3×12", video:"https://www.youtube.com/embed/2qYBWtejDiM", passos:["Polia baixa, de costas para a máquina","Dê um passo à frente, cotovelo atrás do corpo","Suba o halter/cabo contraindo o bíceps","Posição de maior tensão no alongamento"], dica:"Pesquisas mostram que treino em alongamento maximiza hipertrofia.", erro:"Não avance o cotovelo ao subir." },
+          { nome:"Levantamento Terra Romeno (Unilateral)", musculo:"Isquiotibiais · Glúteo · Lombar", series:"3×10", video:"https://www.youtube.com/embed/2SHsk9AitMA", passos:["Em pé com 1 halter na mão oposta à perna de apoio","Incline o tronco para frente erguendo a perna traseira","Mantenha coluna neutra","Retorne e repita"], dica:"Ótimo para corrigir desequilíbrios entre os lados.", erro:"Não rotacione o quadril ao subir a perna." }
         ]
       },
       C: {
         desc: "Pernas (Alta Intensidade) + Ombros",
         exercicios: [
-          {
-            nome: "Agachamento com Pausa",
-            musculo: "Quadríceps · Glúteos · Core",
-            series: "5×4",
-            video: "https://www.youtube.com/embed/ultWZbUMPL8",
-            passos: ["Agachamento completo com pausa de 3s no fundo","Sem quique — force muscular pura","Subida explosiva","Carga 10–15% menor que o agachamento normal"],
-            dica: "Elimina o reflexo elástico e aumenta muito o recrutamento muscular.",
-            erro: "Não relaxe o core na pausa — mantenha tudo tenso."
-          },
-          {
-            nome: "Agachamento Búlgaro (Split Squat)",
-            musculo: "Quadríceps · Glúteo · Equilíbrio",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/2C-uNgKwPLE",
-            passos: ["Pé traseiro no banco, pé da frente avançado","Desça até o joelho traseiro quase tocar o chão","Joelho da frente alinhado com o pé","Suba empurrando com o calcanhar"],
-            dica: "Um dos melhores exercícios unilaterais para glúteo e quad.",
-            erro: "Não deixe o joelho da frente colapsar para dentro."
-          },
-          {
-            nome: "Leg Press — Pisada Alta e Larga",
-            musculo: "Glúteos · Isquiotibiais",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: ["Pés altos e abertos na plataforma","Desça profundo — quase 90°","Empurre pelos calcanhares","Pausa de 1s no fundo"],
-            dica: "Pisada alta ativa muito mais glúteo que a posição padrão.",
-            erro: "Não deixe o glúteo sair do assento."
-          },
-          {
-            nome: "Stiff Unilateral com Halter",
-            musculo: "Isquiotibiais · Glúteo",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/2SHsk9AitMA",
-            passos: ["Um halter na mão ipsilateral ou contralateral","Perna de apoio levemente dobrada","Incline descendo o halter pela coxa","Sinta o isquio alongar"],
-            dica: "Corrige desequilíbrios entre os lados.",
-            erro: "Não torça a coluna — mantenha quadril nivelado."
-          },
-          {
-            nome: "Cadeira Abdutora",
-            musculo: "Glúteo Médio · TFL",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/Rdc8KGGlm3M",
-            passos: ["Sentado, coxas contra os apoios","Abra as pernas controlando","Pause na abertura máxima","Retorne lentamente"],
-            dica: "Glúteo médio forte protege os joelhos e melhora a postura.",
-            erro: "Não use as costas para ajudar no movimento."
-          },
-          {
-            nome: "Panturrilha em Pé com Carga Alta",
-            musculo: "Gastrocnêmio",
-            series: "5×20",
-            video: "https://www.youtube.com/embed/gwLzBJYoWlI",
-            passos: ["Carga progressivamente mais alta","Pausa de 2s no topo","Desça completamente até sentir o alongamento","Sem quique"],
-            dica: "Panturrilha é um músculo altamente resistente — volume alto obrigatório.",
-            erro: "Quicar não conta como repetição."
-          },
-          {
-            nome: "Desenvolvimento com Halteres (Push Press)",
-            musculo: "Deltóide · Tríceps · Trapézio",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/B-aVuyhvLHU",
-            passos: ["Use leve impulso das pernas para iniciar o movimento","Empurre os halteres acima da cabeça","Descida deve ser estrita e lenta","Não é balancear — é um pequeno impulso controlado"],
-            dica: "Push press permite usar mais carga que o desenvolvimento estrito.",
-            erro: "Não exagere no impulso — o trabalho deve ser dos ombros."
-          },
-          {
-            nome: "Elevação Lateral em Cabos",
-            musculo: "Deltóide Lateral",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: ["Cabo baixo, pula o lado de fora","Levante lateralmente até a altura do ombro","Cabo mantém tensão constante (superior ao halter)","Desça controlando"],
-            dica: "Cabo é superior ao halter pois mantém tensão no ponto mais fraco do movimento.",
-            erro: "Não encolha o ombro no topo."
-          },
-          {
-            nome: "Rotação Externa com Elástico/Cabo",
-            musculo: "Manguito Rotador",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/k_IpX3LNvpM",
-            passos: ["Cotovelo a 90°, fixo ao lado do corpo","Gire o antebraço para fora contra a resistência","Retorne controlando","Faça os dois lados"],
-            dica: "Exercício preventivo essencial para quem treina pesado.",
-            erro: "Não mova o cotovelo — apenas a rotação do ombro."
-          }
+          { nome:"Agachamento com Pausa", musculo:"Quadríceps · Glúteos · Core", series:"5×4", video:"https://www.youtube.com/embed/ultWZbUMPL8", passos:["Agachamento completo com pausa de 3s no fundo","Sem quique — force muscular pura","Subida explosiva","Carga 10–15% menor que o agachamento normal"], dica:"Elimina o reflexo elástico e aumenta muito o recrutamento muscular.", erro:"Não relaxe o core na pausa — mantenha tudo tenso." },
+          { nome:"Agachamento Búlgaro (Split Squat)", musculo:"Quadríceps · Glúteo · Equilíbrio", series:"4×10", video:"https://www.youtube.com/embed/2C-uNgKwPLE", passos:["Pé traseiro no banco, pé da frente avançado","Desça até o joelho traseiro quase tocar o chão","Joelho da frente alinhado com o pé","Suba empurrando com o calcanhar"], dica:"Um dos melhores exercícios unilaterais para glúteo e quad.", erro:"Não deixe o joelho da frente colapsar para dentro." },
+          { nome:"Leg Press — Pisada Alta e Larga", musculo:"Glúteos · Isquiotibiais", series:"4×15", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Pés altos e abertos na plataforma","Desça profundo — quase 90°","Empurre pelos calcanhares","Pausa de 1s no fundo"], dica:"Pisada alta ativa muito mais glúteo que a posição padrão.", erro:"Não deixe o glúteo sair do assento." },
+          { nome:"Stiff Unilateral com Halter", musculo:"Isquiotibiais · Glúteo", series:"4×10", video:"https://www.youtube.com/embed/2SHsk9AitMA", passos:["Um halter na mão ipsilateral ou contralateral","Perna de apoio levemente dobrada","Incline descendo o halter pela coxa","Sinta o isquio alongar"], dica:"Corrige desequilíbrios entre os lados.", erro:"Não torça a coluna — mantenha quadril nivelado." },
+          { nome:"Cadeira Abdutora", musculo:"Glúteo Médio · TFL", series:"4×20", video:"https://www.youtube.com/embed/Rdc8KGGlm3M", passos:["Sentado, coxas contra os apoios","Abra as pernas controlando","Pause na abertura máxima","Retorne lentamente"], dica:"Glúteo médio forte protege os joelhos e melhora a postura.", erro:"Não use as costas para ajudar no movimento." },
+          { nome:"Panturrilha em Pé com Carga Alta", musculo:"Gastrocnêmio", series:"5×20", video:"https://www.youtube.com/embed/gwLzBJYoWlI", passos:["Carga progressivamente mais alta","Pausa de 2s no topo","Desça completamente até sentir o alongamento","Sem quique"], dica:"Panturrilha é um músculo altamente resistente — volume alto obrigatório.", erro:"Quicar não conta como repetição." },
+          { nome:"Desenvolvimento com Halteres (Push Press)", musculo:"Deltóide · Tríceps · Trapézio", series:"4×8", video:"https://www.youtube.com/embed/B-aVuyhvLHU", passos:["Use leve impulso das pernas para iniciar o movimento","Empurre os halteres acima da cabeça","Descida deve ser estrita e lenta","Não é balancear — é um pequeno impulso controlado"], dica:"Push press permite usar mais carga que o desenvolvimento estrito.", erro:"Não exagere no impulso — o trabalho deve ser dos ombros." },
+          { nome:"Elevação Lateral em Cabos", musculo:"Deltóide Lateral", series:"4×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Cabo baixo, pula o lado de fora","Levante lateralmente até a altura do ombro","Cabo mantém tensão constante (superior ao halter)","Desça controlando"], dica:"Cabo é superior ao halter pois mantém tensão no ponto mais fraco do movimento.", erro:"Não encolha o ombro no topo." },
+          { nome:"Rotação Externa com Elástico/Cabo", musculo:"Manguito Rotador", series:"3×15", video:"https://www.youtube.com/embed/k_IpX3LNvpM", passos:["Cotovelo a 90°, fixo ao lado do corpo","Gire o antebraço para fora contra a resistência","Retorne controlando","Faça os dois lados"], dica:"Exercício preventivo essencial para quem treina pesado.", erro:"Não mova o cotovelo — apenas a rotação do ombro." }
         ]
       }
     }
   },
 
-  // ══════════════════════════════════════════════════════════
-  //  FEMININO — INICIANTE
-  // ══════════════════════════════════════════════════════════
   F_iniciante: {
     descricao: "Full Body 2× por semana. Foco em glúteos, pernas e postura.",
     fichas: {
       A: {
         desc: "Full Body Feminino A — Segunda / Quinta",
         exercicios: [
-          {
-            nome: "Agachamento com Halter (Goblet)",
-            musculo: "Glúteos · Quadríceps · Core",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/MxsFDhcyFyE",
-            passos: ["Halter no peito com as duas mãos","Pés na largura dos ombros, ponteiros abertos","Agache profundamente — 'quebre o paralelo'","Empurre pelos calcanhares para subir"],
-            dica: "Profundidade total ativa muito mais glúteo.",
-            erro: "Não deixe os joelhos colapsarem para dentro."
-          },
-          {
-            nome: "Stiff com Halteres",
-            musculo: "Isquiotibiais · Glúteos",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/1uDiW5--rAE",
-            passos: ["Em pé, halteres na frente das coxas","Empurre o quadril para trás","Desça sentindo o isquio alongar","Contraia o glúteo para subir"],
-            dica: "Sinta o isquio 'puxar' — se não sentir, aumente a amplitude.",
-            erro: "Não curve a coluna — o perigo está no lombar arredondado."
-          },
-          {
-            nome: "Hip Thrust com Halter",
-            musculo: "Glúteos — ativação máxima",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/LM8XHLYJoYs",
-            passos: ["Ombros apoiados no banco, halter sobre o quadril","Pés no chão na largura do quadril","Eleve o quadril contraindo o glúteo forte","Pause 2s no topo"],
-            dica: "O melhor exercício para ativação de glúteo — prioridade máxima.",
-            erro: "Não hiperextenda a lombar no topo — o movimento é do quadril."
-          },
-          {
-            nome: "Elevação Pélvica (Sem Carga)",
-            musculo: "Glúteos · Core",
-            series: "3×20",
-            video: "https://www.youtube.com/embed/wPM8icPu6H8",
-            passos: ["Deitada, joelhos dobrados, pés no chão","Empurre o quadril para cima contraindo o glúteo","Pause 2s no topo","Desça controlando"],
-            dica: "Versão do hip thrust no chão — ótima para iniciante.",
-            erro: "Não abra os joelhos — mantenha paralelos durante o movimento."
-          },
-          {
-            nome: "Leg Press (Pisada Alta)",
-            musculo: "Glúteos · Isquiotibiais",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: ["Pés altos e abertos na plataforma","Desça profundo até quase 90°","Empurre pelos calcanhares","Contraia o glúteo no topo"],
-            dica: "Pés altos = mais glúteo, sempre.",
-            erro: "Nunca trave o joelho na extensão."
-          },
-          {
-            nome: "Remada no Puxador (Pegada Neutra)",
-            musculo: "Dorsal · Rombóides · Postura",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/GZbfZ033f74",
-            passos: ["Alça neutra, sente e ajuste o assento","Puxe a alça até o umbigo","Comprima as escápulas","Estenda os braços controlando"],
-            dica: "Costas fortes = postura melhor e menos dor no dia a dia.",
-            erro: "Não encurve as costas para frente ao retornar."
-          },
-          {
-            nome: "Elevação Lateral com Halteres Leves",
-            musculo: "Deltóide Lateral",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: ["Em pé, halteres leves ao lado","Levante até a altura dos ombros","Cotovelo levemente dobrado","Desça lentamente"],
-            dica: "Ombros definidos fazem muita diferença na silhueta feminina.",
-            erro: "Não encolha o ombro no movimento."
-          },
-          {
-            nome: "Prancha Isométrica",
-            musculo: "Core completo",
-            series: "3×30s",
-            video: "https://www.youtube.com/embed/pSHjTRCQxIw",
-            passos: ["Antebraços no chão, cotovelos sob os ombros","Corpo reto da cabeça aos calcanhares","Contraia abdômen, glúteo e quads ao mesmo tempo","Mantenha a respiração"],
-            dica: "Core forte = proteção para a coluna e melhor performance.",
-            erro: "Não deixe o quadril subir ou afundar."
-          }
+          { nome:"Agachamento com Halter (Goblet)", musculo:"Glúteos · Quadríceps · Core", series:"3×15", video:"https://www.youtube.com/embed/MxsFDhcyFyE", passos:["Halter no peito com as duas mãos","Pés na largura dos ombros, ponteiros abertos","Agache profundamente — 'quebre o paralelo'","Empurre pelos calcanhares para subir"], dica:"Profundidade total ativa muito mais glúteo.", erro:"Não deixe os joelhos colapsarem para dentro." },
+          { nome:"Stiff com Halteres", musculo:"Isquiotibiais · Glúteos", series:"3×12", video:"https://www.youtube.com/embed/1uDiW5--rAE", passos:["Em pé, halteres na frente das coxas","Empurre o quadril para trás","Desça sentindo o isquio alongar","Contraia o glúteo para subir"], dica:"Sinta o isquio 'puxar' — se não sentir, aumente a amplitude.", erro:"Não curve a coluna — o perigo está no lombar arredondado." },
+          { nome:"Hip Thrust com Halter", musculo:"Glúteos — ativação máxima", series:"4×15", video:"https://www.youtube.com/embed/LM8XHLYJoYs", passos:["Ombros apoiados no banco, halter sobre o quadril","Pés no chão na largura do quadril","Eleve o quadril contraindo o glúteo forte","Pause 2s no topo"], dica:"O melhor exercício para ativação de glúteo — prioridade máxima.", erro:"Não hiperextanda a lombar no topo — o movimento é do quadril." },
+          { nome:"Elevação Pélvica (Sem Carga)", musculo:"Glúteos · Core", series:"3×20", video:"https://www.youtube.com/embed/wPM8icPu6H8", passos:["Deitada, joelhos dobrados, pés no chão","Empurre o quadril para cima contraindo o glúteo","Pause 2s no topo","Desça controlando"], dica:"Versão do hip thrust no chão — ótima para iniciante.", erro:"Não abra os joelhos — mantenha paralelos durante o movimento." },
+          { nome:"Leg Press (Pisada Alta)", musculo:"Glúteos · Isquiotibiais", series:"3×15", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Pés altos e abertos na plataforma","Desça profundo até quase 90°","Empurre pelos calcanhares","Contraia o glúteo no topo"], dica:"Pés altos = mais glúteo, sempre.", erro:"Nunca trave o joelho na extensão." },
+          { nome:"Remada no Puxador (Pegada Neutra)", musculo:"Dorsal · Rombóides · Postura", series:"3×12", video:"https://www.youtube.com/embed/GZbfZ033f74", passos:["Alça neutra, sente e ajuste o assento","Puxe a alça até o umbigo","Comprima as escápulas","Estenda os braços controlando"], dica:"Costas fortes = postura melhor e menos dor no dia a dia.", erro:"Não encurve as costas para frente ao retornar." },
+          { nome:"Elevação Lateral com Halteres Leves", musculo:"Deltóide Lateral", series:"3×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Em pé, halteres leves ao lado","Levante até a altura dos ombros","Cotovelo levemente dobrado","Desça lentamente"], dica:"Ombros definidos fazem muita diferença na silhueta feminina.", erro:"Não encolha o ombro no movimento." },
+          { nome:"Prancha Isométrica", musculo:"Core completo", series:"3×30s", video:"https://www.youtube.com/embed/pSHjTRCQxIw", passos:["Antebraços no chão, cotovelos sob os ombros","Corpo reto da cabeça aos calcanhares","Contraia abdômen, glúteo e quads ao mesmo tempo","Mantenha a respiração"], dica:"Core forte = proteção para a coluna e melhor performance.", erro:"Não deixe o quadril subir ou afundar." }
         ]
       },
       B: {
         desc: "Full Body Feminino B — Terça / Sexta",
         exercicios: [
-          {
-            nome: "Agachamento Sumô com Halter",
-            musculo: "Glúteos · Adutores · Quadríceps",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/rShCehTxFak",
-            passos: ["Pés bem abertos (sumô), ponteiros para fora","Halter pendurado entre as pernas","Agache profundamente","Empurre pelos calcanhares"],
-            dica: "O agachamento sumô ativa mais adutores e glúteo médio.",
-            erro: "Não deixe os joelhos caírem para dentro."
-          },
-          {
-            nome: "Cadeira Abdutora",
-            musculo: "Glúteo Médio · TFL",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/Rdc8KGGlm3M",
-            passos: ["Sentada, coxas contra os apoios","Abra as pernas controlando","Pause na abertura máxima","Retorne lentamente"],
-            dica: "Glúteo médio arredonda o quadril lateralmente — não negligencie.",
-            erro: "Não use força do tronco para ajudar."
-          },
-          {
-            nome: "Cadeira Adutora",
-            musculo: "Adutores · Face Interna da Coxa",
-            series: "3×20",
-            video: "https://www.youtube.com/embed/BN0Z_FKhbYI",
-            passos: ["Sentada, pernas abertas contra os apoios","Feche as pernas controlando","Pause no fechamento","Abra lentamente"],
-            dica: "Fortalece a face interna da coxa.",
-            erro: "Não use carga excessiva — pode causar lesão nos adutores."
-          },
-          {
-            nome: "Mesa Flexora",
-            musculo: "Isquiotibiais",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/ELOCsoDSmrg",
-            passos: ["Deitada de bruços, tornozelos sob o rolinho","Flexione os joelhos trazendo os calcanhares","Contraia forte no topo","Desça controlando"],
-            dica: "Isquios fortes protegem o joelho.",
-            erro: "Não deixe o quadril sair da mesa."
-          },
-          {
-            nome: "Supino com Halteres (Banco Plano)",
-            musculo: "Peitoral · Tríceps · Ombro",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/VmB1G1K7v94",
-            passos: ["Deitada no banco, halteres na altura do peitoral","Empurre até os braços quase estendidos","Desça sentindo o alongamento do peitoral","Mantenha escápulas retraídas"],
-            dica: "Treino de peitoral melhora a sustentação dos seios.",
-            erro: "Não abra os cotovelos 90° — risco para o ombro."
-          },
-          {
-            nome: "Tríceps Pulley com Corda",
-            musculo: "Tríceps",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/vB5OHsJ3EME",
-            passos: ["Polia alta, corda nas mãos","Cotovelos fixos ao lado do corpo","Empurre a corda para baixo até a extensão","Volte controlando"],
-            dica: "Braços bem definidos passam por tríceps forte.",
-            erro: "Cotovelos móveis = perde o isolamento."
-          },
-          {
-            nome: "Rosca com Halteres (Simultânea)",
-            musculo: "Bíceps",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/kwG2ipFRgfo",
-            passos: ["Em pé, halteres ao lado do corpo","Suba ambos simultaneamente girando o pulso (supinação)","Cotovelos fixos","Desça 3 segundos"],
-            dica: "Bíceps definido completa o visual do braço.",
-            erro: "Não balance o corpo."
-          },
-          {
-            nome: "Abdominal Crunch (Clássico)",
-            musculo: "Reto Abdominal",
-            series: "3×20",
-            video: "https://www.youtube.com/embed/Xyd_fa5zoEU",
-            passos: ["Deitada, joelhos dobrados, mãos atrás da cabeça","Suba apenas os ombros do chão","Contraia o abdômen no topo","Desça controlando"],
-            dica: "Qualidade supera quantidade — 20 reps bem feitas valem mais que 50 mal.",
-            erro: "Não puxe o pescoço com as mãos."
-          }
+          { nome:"Agachamento Sumô com Halter", musculo:"Glúteos · Adutores · Quadríceps", series:"3×15", video:"https://www.youtube.com/embed/rShCehTxFak", passos:["Pés bem abertos (sumô), ponteiros para fora","Halter pendurado entre as pernas","Agache profundamente","Empurre pelos calcanhares"], dica:"O agachamento sumô ativa mais adutores e glúteo médio.", erro:"Não deixe os joelhos caírem para dentro." },
+          { nome:"Cadeira Abdutora", musculo:"Glúteo Médio · TFL", series:"4×20", video:"https://www.youtube.com/embed/Rdc8KGGlm3M", passos:["Sentada, coxas contra os apoios","Abra as pernas controlando","Pause na abertura máxima","Retorne lentamente"], dica:"Glúteo médio arredonda o quadril lateralmente — não negligencie.", erro:"Não use força do tronco para ajudar." },
+          { nome:"Cadeira Adutora", musculo:"Adutores · Face Interna da Coxa", series:"3×20", video:"https://www.youtube.com/embed/BN0Z_FKhbYI", passos:["Sentada, pernas abertas contra os apoios","Feche as pernas controlando","Pause no fechamento","Abra lentamente"], dica:"Fortalece a face interna da coxa.", erro:"Não use carga excessiva — pode causar lesão nos adutores." },
+          { nome:"Mesa Flexora", musculo:"Isquiotibiais", series:"3×12", video:"https://www.youtube.com/embed/ELOCsoDSmrg", passos:["Deitada de bruços, tornozelos sob o rolinho","Flexione os joelhos trazendo os calcanhares","Contraia forte no topo","Desça controlando"], dica:"Isquios fortes protegem o joelho.", erro:"Não deixe o quadril sair da mesa." },
+          { nome:"Supino com Halteres (Banco Plano)", musculo:"Peitoral · Tríceps · Ombro", series:"3×12", video:"https://www.youtube.com/embed/VmB1G1K7v94", passos:["Deitada no banco, halteres na altura do peitoral","Empurre até os braços quase estendidos","Desça sentindo o alongamento do peitoral","Mantenha escápulas retraídas"], dica:"Treino de peitoral melhora a sustentação dos seios.", erro:"Não abra os cotovelos 90° — risco para o ombro." },
+          { nome:"Tríceps Pulley com Corda", musculo:"Tríceps", series:"3×15", video:"https://www.youtube.com/embed/vB5OHsJ3EME", passos:["Polia alta, corda nas mãos","Cotovelos fixos ao lado do corpo","Empurre a corda para baixo até a extensão","Volte controlando"], dica:"Braços bem definidos passam por tríceps forte.", erro:"Cotovelos móveis = perde o isolamento." },
+          { nome:"Rosca com Halteres (Simultânea)", musculo:"Bíceps", series:"3×12", video:"https://www.youtube.com/embed/kwG2ipFRgfo", passos:["Em pé, halteres ao lado do corpo","Suba ambos simultaneamente girando o pulso (supinação)","Cotovelos fixos","Desça 3 segundos"], dica:"Bíceps definido completa o visual do braço.", erro:"Não balance o corpo." },
+          { nome:"Abdominal Crunch (Clássico)", musculo:"Reto Abdominal", series:"3×20", video:"https://www.youtube.com/embed/Xyd_fa5zoEU", passos:["Deitada, joelhos dobrados, mãos atrás da cabeça","Suba apenas os ombros do chão","Contraia o abdômen no topo","Desça controlando"], dica:"Qualidade supera quantidade — 20 reps bem feitas valem mais que 50 mal.", erro:"Não puxe o pescoço com as mãos." }
         ]
       }
     }
-  }  // ══════════════════════════════════════════════════════════
-  //  FEMININO — INTERMEDIÁRIO
-  // ══════════════════════════════════════════════════════════
+  },
+
   F_intermediario: {
     descricao: "Divisão ABC. Foco em hipertrofia de glúteos, pernas e definição.",
     fichas: {
       A: {
         desc: "Glúteos + Isquiotibiais",
         exercicios: [
-          {
-            nome: "Hip Thrust com Barra",
-            musculo: "Glúteo Máximo — ativação máxima",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/LM8XHLYJoYs",
-            passos: ["Barra sobre o quadril com proteção (toalha)","Ombros no banco, pés no chão","Eleve o quadril até paralelo ao chão","Pause 2s no topo contraindo o glúteo","Desça controlando"],
-            dica: "A barra permite progressão de carga — melhor que o halter para intermediárias.",
-            erro: "Não hiperextenda a lombar — glúteo, não lombar."
-          },
-          {
-            nome: "Stiff com Barra",
-            musculo: "Isquiotibiais · Glúteos",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/1uDiW5--rAE",
-            passos: ["Barra na frente das coxas","Empurre o quadril para trás descendo a barra","Joelhos levemente dobrados","Sinta profundamente o isquio alongar","Contraia glúteo para subir"],
-            dica: "Isquios fortes = mais força no hip thrust e agachamento.",
-            erro: "Não curve a lombar — neutro sempre."
-          },
-          {
-            nome: "Agachamento Bulgaro com Halteres",
-            musculo: "Glúteos · Quadríceps",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/2C-uNgKwPLE",
-            passos: ["Pé traseiro no banco, halteres nas mãos","Desça até o joelho traseiro quase tocar o chão","Joelho da frente alinhado com o 2° dedo","Empurre pelo calcanhar"],
-            dica: "Excelente para corrigir assimetrias e focar no glúteo.",
-            erro: "Não deixe o joelho da frente colapsar."
-          },
-          {
-            nome: "Agachamento Sumô com Barra (Smith)",
-            musculo: "Glúteos · Adutores",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/rShCehTxFak",
-            passos: ["No Smith, pés bem abertos (sumô)","Agache profundo quebrando o paralelo","Joelhos apontam na direção dos pés","Empurre pelos calcanhares"],
-            dica: "Smith permite mais foco no glúteo e adutores.",
-            erro: "Joelhos não devem cruzar para dentro dos pés."
-          },
-          {
-            nome: "Cadeira Abdutora (Drop Set)",
-            musculo: "Glúteo Médio",
-            series: "3×20 + drop",
-            video: "https://www.youtube.com/embed/Rdc8KGGlm3M",
-            passos: ["20 reps na carga principal","Reduza 20% de carga — mais 15 reps","Reduza mais 20% — mais 10 reps","Queime o glúteo médio"],
-            dica: "Drop set no abdutora é excelente para congestão.",
-            erro: "Não use a coluna para ajudar."
-          },
-          {
-            nome: "Mesa Flexora",
-            musculo: "Isquiotibiais",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/ELOCsoDSmrg",
-            passos: ["De bruços, tornozelos sob o rolinho","Flexione até ~120° de joelho","Contraia forte","Desça 3 segundos"],
-            dica: "Aumente carga gradualmente — isquio leva tempo para fortalecer.",
-            erro: "Quadril não sai da mesa."
-          },
-          {
-            nome: "Elevação de Quadril Unilateral (Donkey Kick)",
-            musculo: "Glúteo Máximo",
-            series: "3×15 cada lado",
-            video: "https://www.youtube.com/embed/SJ1Xuz9D-ZQ",
-            passos: ["De quatro apoios","Eleve um joelho em direção ao teto","Mantenha o joelho dobrado a 90°","Contraia glúteo forte no topo"],
-            dica: "Adicione resistência com elástico para intensificar.",
-            erro: "Não rotacione o quadril para ajudar."
-          },
-          {
-            nome: "Panturrilha em Pé",
-            musculo: "Gastrocnêmio",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/gwLzBJYoWlI",
-            passos: ["Barra ou halteres, pés em degrau","Suba na ponta do pé","Pause 2s no topo","Desça até o alongamento completo"],
-            dica: "Panturrilha torneada exige volume alto.",
-            erro: "Quicar não ativa o músculo."
-          },
-          {
-            nome: "Abdominal Roda (Joelhos)",
-            musculo: "Core · Reto Abdominal",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/sxHjqnr_5Q0",
-            passos: ["Ajoelhada, roda nas mãos","Estenda para frente próximo ao chão","Puxe de volta contraindo o abdômen","Core sempre tenso"],
-            dica: "Uma das melhores ferramentas para fortalecimento do core.",
-            erro: "Lombar não pode afundar — core ativado o tempo todo."
-          }
+          { nome:"Hip Thrust com Barra", musculo:"Glúteo Máximo — ativação máxima", series:"4×12", video:"https://www.youtube.com/embed/LM8XHLYJoYs", passos:["Barra sobre o quadril com proteção (toalha)","Ombros no banco, pés no chão","Eleve o quadril até paralelo ao chão","Pause 2s no topo contraindo o glúteo","Desça controlando"], dica:"A barra permite progressão de carga — melhor que o halter para intermediárias.", erro:"Não hiperextenda a lombar — glúteo, não lombar." },
+          { nome:"Stiff com Barra", musculo:"Isquiotibiais · Glúteos", series:"4×10", video:"https://www.youtube.com/embed/1uDiW5--rAE", passos:["Barra na frente das coxas","Empurre o quadril para trás descendo a barra","Joelhos levemente dobrados","Sinta profundamente o isquio alongar","Contraia glúteo para subir"], dica:"Isquios fortes = mais força no hip thrust e agachamento.", erro:"Não curve a lombar — neutro sempre." },
+          { nome:"Agachamento Bulgaro com Halteres", musculo:"Glúteos · Quadríceps", series:"4×10", video:"https://www.youtube.com/embed/2C-uNgKwPLE", passos:["Pé traseiro no banco, halteres nas mãos","Desça até o joelho traseiro quase tocar o chão","Joelho da frente alinhado com o 2° dedo","Empurre pelo calcanhar"], dica:"Excelente para corrigir assimetrias e focar no glúteo.", erro:"Não deixe o joelho da frente colapsar." },
+          { nome:"Agachamento Sumô com Barra (Smith)", musculo:"Glúteos · Adutores", series:"4×12", video:"https://www.youtube.com/embed/rShCehTxFak", passos:["No Smith, pés bem abertos (sumô)","Agache profundo quebrando o paralelo","Joelhos apontam na direção dos pés","Empurre pelos calcanhares"], dica:"Smith permite mais foco no glúteo e adutores.", erro:"Joelhos não devem cruzar para dentro dos pés." },
+          { nome:"Cadeira Abdutora (Drop Set)", musculo:"Glúteo Médio", series:"3×20 + drop", video:"https://www.youtube.com/embed/Rdc8KGGlm3M", passos:["20 reps na carga principal","Reduza 20% de carga — mais 15 reps","Reduza mais 20% — mais 10 reps","Queime o glúteo médio"], dica:"Drop set no abdutora é excelente para congestão.", erro:"Não use a coluna para ajudar." },
+          { nome:"Mesa Flexora", musculo:"Isquiotibiais", series:"4×12", video:"https://www.youtube.com/embed/ELOCsoDSmrg", passos:["De bruços, tornozelos sob o rolinho","Flexione até ~120° de joelho","Contraia forte","Desça 3 segundos"], dica:"Aumente carga gradualmente — isquio leva tempo para fortalecer.", erro:"Quadril não sai da mesa." },
+          { nome:"Elevação de Quadril Unilateral (Donkey Kick)", musculo:"Glúteo Máximo", series:"3×15 cada lado", video:"https://www.youtube.com/embed/SJ1Xuz9D-ZQ", passos:["De quatro apoios","Eleve um joelho em direção ao teto","Mantenha o joelho dobrado a 90°","Contraia glúteo forte no topo"], dica:"Adicione resistência com elástico para intensificar.", erro:"Não rotacione o quadril para ajudar." },
+          { nome:"Panturrilha em Pé", musculo:"Gastrocnêmio", series:"4×20", video:"https://www.youtube.com/embed/gwLzBJYoWlI", passos:["Barra ou halteres, pés em degrau","Suba na ponta do pé","Pause 2s no topo","Desça até o alongamento completo"], dica:"Panturrilha torneada exige volume alto.", erro:"Quicar não ativa o músculo." },
+          { nome:"Abdominal Roda (Joelhos)", musculo:"Core · Reto Abdominal", series:"3×12", video:"https://www.youtube.com/embed/sxHjqnr_5Q0", passos:["Ajoelhada, roda nas mãos","Estenda para frente próximo ao chão","Puxe de volta contraindo o abdômen","Core sempre tenso"], dica:"Uma das melhores ferramentas para fortalecimento do core.", erro:"Lombar não pode afundar — core ativado o tempo todo." }
         ]
       },
       B: {
         desc: "Peito + Costas + Ombros",
         exercicios: [
-          {
-            nome: "Supino Inclinado com Halteres",
-            musculo: "Peitoral Superior · Deltóide",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/8iPEnn-ltC8",
-            passos: ["Banco a 30°","Halteres na altura do peitoral","Empurre até quase estendidos","Desça sentindo o alongamento"],
-            dica: "Peitoral forte melhora a postura e sustentação.",
-            erro: "Não abra os cotovelos demais."
-          },
-          {
-            nome: "Crossover Central",
-            musculo: "Peitoral Medial",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/taI4XduLpTk",
-            passos: ["Polias na altura dos ombros","Puxe cruzando as mãos na frente do peito","Cotovelos levemente dobrados","Contraia forte no cruzamento"],
-            dica: "Excelente finalizador para o peitoral.",
-            erro: "Não use carga excessiva — foco é na contração."
-          },
-          {
-            nome: "Pulldown Pegada Supinada",
-            musculo: "Dorsal · Bíceps",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/CAwf7n6Luuc",
-            passos: ["Pegada supinada na largura dos ombros","Puxe até o queixo","Contraia o dorsal","Suba controlando"],
-            dica: "Costas em V valoriza muito a silhueta feminina.",
-            erro: "Não incline o tronco excessivamente."
-          },
-          {
-            nome: "Remada Cavalinho (T-Bar)",
-            musculo: "Dorsal Médio · Espessura",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/j3Igk5nyZE4",
-            passos: ["Tronco a 45°, puxe a carga ao peito","Cotovelos altos para trapézio","Comprima as escápulas no topo"],
-            dica: "Espessura das costas = mais força e postura.",
-            erro: "Não curve o lombar."
-          },
-          {
-            nome: "Desenvolvimento com Halteres",
-            musculo: "Deltóide",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/B-aVuyhvLHU",
-            passos: ["Sentada, halteres na altura dos ombros","Empurre acima da cabeça","Desça até 90° de cotovelo","Core contraído"],
-            dica: "Ombros bem trabalhados criam o efeito ampulheta.",
-            erro: "Não empurre para frente — movimento vertical."
-          },
-          {
-            nome: "Elevação Lateral com Halteres",
-            musculo: "Deltóide Lateral",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: ["Levante lateralmente até a altura dos ombros","Cotovelos ligeiramente dobrados","Polegar levemente para baixo","Desça 3 segundos"],
-            dica: "Volume alto é fundamental para crescimento do deltóide lateral.",
-            erro: "Não encolha o trapézio."
-          },
-          {
-            nome: "Rosca Direta com Halteres",
-            musculo: "Bíceps",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/kwG2ipFRgfo",
-            passos: ["Alternado ou simultâneo","Cotovelos fixos ao lado do corpo","Supine o pulso na subida","Desça 3 segundos"],
-            dica: "Bíceps fortes melhoram a performance em todos os exercícios de puxada.",
-            erro: "Não balance o corpo."
-          },
-          {
-            nome: "Tríceps Testa com Halteres",
-            musculo: "Tríceps — porção longa",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/d_KZxkY_0cY",
-            passos: ["Deitada, halteres acima dos ombros","Dobre os cotovelos levando os halteres às orelhas","Estenda de volta","Cotovelos apontam para o teto"],
-            dica: "Treino de tríceps elimina a flacidez no braço.",
-            erro: "Cotovelos não abrem para os lados."
-          },
-          {
-            nome: "Face Pull com Corda",
-            musculo: "Deltóide Posterior · Postura",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/rep-qVOkqgk",
-            passos: ["Polia na altura dos olhos","Puxe a corda em direção ao rosto","Cotovelos abertos para os lados","Contraia deltóide posterior"],
-            dica: "Previne lesões no ombro e melhora a postura.",
-            erro: "Não use carga pesada."
-          }
+          { nome:"Supino Inclinado com Halteres", musculo:"Peitoral Superior · Deltóide", series:"4×12", video:"https://www.youtube.com/embed/8iPEnn-ltC8", passos:["Banco a 30°","Halteres na altura do peitoral","Empurre até quase estendidos","Desça sentindo o alongamento"], dica:"Peitoral forte melhora a postura e sustentação.", erro:"Não abra os cotovelos demais." },
+          { nome:"Crossover Central", musculo:"Peitoral Medial", series:"3×15", video:"https://www.youtube.com/embed/taI4XduLpTk", passos:["Polias na altura dos ombros","Puxe cruzando as mãos na frente do peito","Cotovelos levemente dobrados","Contraia forte no cruzamento"], dica:"Excelente finalizador para o peitoral.", erro:"Não use carga excessiva — foco é na contração." },
+          { nome:"Pulldown Pegada Supinada", musculo:"Dorsal · Bíceps", series:"4×12", video:"https://www.youtube.com/embed/CAwf7n6Luuc", passos:["Pegada supinada na largura dos ombros","Puxe até o queixo","Contraia o dorsal","Suba controlando"], dica:"Costas em V valoriza muito a silhueta feminina.", erro:"Não incline o tronco excessivamente." },
+          { nome:"Remada Cavalinho (T-Bar)", musculo:"Dorsal Médio · Espessura", series:"4×10", video:"https://www.youtube.com/embed/j3Igk5nyZE4", passos:["Tronco a 45°, puxe a carga ao peito","Cotovelos altos para trapézio","Comprima as escápulas no topo"], dica:"Espessura das costas = mais força e postura.", erro:"Não curve o lombar." },
+          { nome:"Desenvolvimento com Halteres", musculo:"Deltóide", series:"4×12", video:"https://www.youtube.com/embed/B-aVuyhvLHU", passos:["Sentada, halteres na altura dos ombros","Empurre acima da cabeça","Desça até 90° de cotovelo","Core contraído"], dica:"Ombros bem trabalhados criam o efeito ampulheta.", erro:"Não empurre para frente — movimento vertical." },
+          { nome:"Elevação Lateral com Halteres", musculo:"Deltóide Lateral", series:"4×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Levante lateralmente até a altura dos ombros","Cotovelos ligeiramente dobrados","Polegar levemente para baixo","Desça 3 segundos"], dica:"Volume alto é fundamental para crescimento do deltóide lateral.", erro:"Não encolha o trapézio." },
+          { nome:"Rosca Direta com Halteres", musculo:"Bíceps", series:"3×12", video:"https://www.youtube.com/embed/kwG2ipFRgfo", passos:["Alternado ou simultâneo","Cotovelos fixos ao lado do corpo","Supine o pulso na subida","Desça 3 segundos"], dica:"Bíceps fortes melhoram a performance em todos os exercícios de puxada.", erro:"Não balance o corpo." },
+          { nome:"Tríceps Testa com Halteres", musculo:"Tríceps — porção longa", series:"3×12", video:"https://www.youtube.com/embed/d_KZxkY_0cY", passos:["Deitada, halteres acima dos ombros","Dobre os cotovelos levando os halteres às orelhas","Estenda de volta","Cotovelos apontam para o teto"], dica:"Treino de tríceps elimina a flacidez no braço.", erro:"Cotovelos não abrem para os lados." },
+          { nome:"Face Pull com Corda", musculo:"Deltóide Posterior · Postura", series:"3×15", video:"https://www.youtube.com/embed/rep-qVOkqgk", passos:["Polia na altura dos olhos","Puxe a corda em direção ao rosto","Cotovelos abertos para os lados","Contraia deltóide posterior"], dica:"Previne lesões no ombro e melhora a postura.", erro:"Não use carga pesada." }
         ]
       },
       C: {
         desc: "Quadríceps + Core + Cardio HIIT",
         exercicios: [
-          {
-            nome: "Agachamento Livre com Barra",
-            musculo: "Quadríceps · Glúteos",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/ultWZbUMPL8",
-            passos: ["Barra no trapézio","Pés na largura dos ombros","Profundidade total","Joelhos alinhados"],
-            dica: "Agachamento com barra permite mais progressão que qualquer variação.",
-            erro: "Joelhos não colapsam para dentro."
-          },
-          {
-            nome: "Hack Agachamento (Máquina)",
-            musculo: "Quadríceps — porção inferior",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/EdtxFSp_zSk",
-            passos: ["Ombros nos suportes","Pés baixos na plataforma (mais quad)","Desça controlando até ~90°","Empurre voltando"],
-            dica: "Pés baixos na máquina = mais enfoque no quad.",
-            erro: "Não trave o joelho."
-          },
-          {
-            nome: "Extensora de Joelho",
-            musculo: "Quadríceps — isolamento",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/YyvSfVjQeL0",
-            passos: ["Sente e ajuste o rolinho na frente do tornozelo","Estenda completamente","Contraia o quad no topo","Desça lentamente"],
-            dica: "Bom finalizador de quadríceps.",
-            erro: "Não use carga excessiva — patelar em risco."
-          },
-          {
-            nome: "Elevação de Pernas Deitada",
-            musculo: "Reto Abdominal Inferior",
-            series: "3×15",
-            video: "https://www.youtube.com/embed/hdng3Nm1x_E",
-            passos: ["Deitada no chão ou banco","Eleve as pernas até 90°","Desça controlando sem tocar o chão","Lombar colada no chão"],
-            dica: "Ótimo exercício para baixo abdominal.",
-            erro: "Não arquei o lombar ao descer as pernas."
-          },
-          {
-            nome: "Russian Twist com Anilha",
-            musculo: "Oblíquos · Core",
-            series: "3×20",
-            video: "https://www.youtube.com/embed/wkD8rjkodUI",
-            passos: ["Sentada com pés no ar, tronco inclinado","Anilha nas mãos, gire de lado a lado","Toque o chão com a anilha em cada lado","Core contraído o tempo todo"],
-            dica: "Oblíquos fortes = cintura mais definida.",
-            erro: "Não gire apenas os braços — o tronco deve rotar."
-          },
-          {
-            nome: "Hollow Body Hold",
-            musculo: "Core — estabilização",
-            series: "3×30s",
-            video: "https://www.youtube.com/embed/LlDNef_Ztsc",
-            passos: ["Deitada, braços acima da cabeça","Eleve levemente pernas, ombros e braços do chão","Lombar colada no chão — fundamental","Mantenha a posição respirando"],
-            dica: "Exercício de core mais eficiente que o abdominal clássico.",
-            erro: "Se a lombar sair do chão, eleve mais as pernas."
-          },
-          {
-            nome: "Panturrilha Sentada (Sóleo)",
-            musculo: "Sóleo",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/JbyjNymZOt0",
-            passos: ["Sentada com joelhos dobrados a 90°","Peso sobre os joelhos","Suba na ponta do pé","Desça completamente"],
-            dica: "Sóleo só ativa com o joelho dobrado — complementa a panturrilha em pé.",
-            erro: "Não quique — movimento lento e completo."
-          },
-          {
-            nome: "Afundo com Halteres (Estacionário)",
-            musculo: "Glúteos · Quadríceps",
-            series: "3×12 cada perna",
-            video: "https://www.youtube.com/embed/D7KaRcUTQeE",
-            passos: ["Em pé, halteres nas mãos","Dê um passo à frente e desça o joelho traseiro quase ao chão","Joelho da frente alinhado com o tornozelo","Volte e alterne as pernas"],
-            dica: "Afundo fundo ativa muito mais glúteo que afundo raso.",
-            erro: "Joelho da frente não passa da ponta do pé."
-          },
-          {
-            nome: "HIIT: Agachamento Jump",
-            musculo: "Explosão · Condicionamento",
-            series: "4×20s (descanso 40s)",
-            video: "https://www.youtube.com/embed/CVaEhXotL7M",
-            passos: ["Agache profundamente","Exploda saltando verticalmente","Aterrisse suavemente em posição de agachamento","Repita no ritmo máximo por 20s"],
-            dica: "HIIT ao final do treino de perna acelera o metabolismo.",
-            erro: "Não aterrisse com os joelhos travados — absorva o impacto."
-          }
+          { nome:"Agachamento Livre com Barra", musculo:"Quadríceps · Glúteos", series:"4×10", video:"https://www.youtube.com/embed/ultWZbUMPL8", passos:["Barra no trapézio","Pés na largura dos ombros","Profundidade total","Joelhos alinhados"], dica:"Agachamento com barra permite mais progressão que qualquer variação.", erro:"Joelhos não colapsam para dentro." },
+          { nome:"Hack Agachamento (Máquina)", musculo:"Quadríceps — porção inferior", series:"4×12", video:"https://www.youtube.com/embed/EdtxFSp_zSk", passos:["Ombros nos suportes","Pés baixos na plataforma (mais quad)","Desça controlando até ~90°","Empurre voltando"], dica:"Pés baixos na máquina = mais enfoque no quad.", erro:"Não trave o joelho." },
+          { nome:"Extensora de Joelho", musculo:"Quadríceps — isolamento", series:"3×15", video:"https://www.youtube.com/embed/YyvSfVjQeL0", passos:["Sente e ajuste o rolinho na frente do tornozelo","Estenda completamente","Contraia o quad no topo","Desça lentamente"], dica:"Bom finalizador de quadríceps.", erro:"Não use carga excessiva — patelar em risco." },
+          { nome:"Elevação de Pernas Deitada", musculo:"Reto Abdominal Inferior", series:"3×15", video:"https://www.youtube.com/embed/hdng3Nm1x_E", passos:["Deitada no chão ou banco","Eleve as pernas até 90°","Desça controlando sem tocar o chão","Lombar colada no chão"], dica:"Ótimo exercício para baixo abdominal.", erro:"Não arqueie o lombar ao descer as pernas." },
+          { nome:"Russian Twist com Anilha", musculo:"Oblíquos · Core", series:"3×20", video:"https://www.youtube.com/embed/wkD8rjkodUI", passos:["Sentada com pés no ar, tronco inclinado","Anilha nas mãos, gire de lado a lado","Toque o chão com a anilha em cada lado","Core contraído o tempo todo"], dica:"Oblíquos fortes = cintura mais definida.", erro:"Não gire apenas os braços — o tronco deve rotar." },
+          { nome:"Hollow Body Hold", musculo:"Core — estabilização", series:"3×30s", video:"https://www.youtube.com/embed/LlDNef_Ztsc", passos:["Deitada, braços acima da cabeça","Eleve levemente pernas, ombros e braços do chão","Lombar colada no chão — fundamental","Mantenha a posição respirando"], dica:"Exercício de core mais eficiente que o abdominal clássico.", erro:"Se a lombar sair do chão, eleve mais as pernas." },
+          { nome:"Panturrilha Sentada (Sóleo)", musculo:"Sóleo", series:"4×20", video:"https://www.youtube.com/embed/JbyjNymZOt0", passos:["Sentada com joelhos dobrados a 90°","Peso sobre os joelhos","Suba na ponta do pé","Desça completamente"], dica:"Sóleo só ativa com o joelho dobrado — complementa a panturrilha em pé.", erro:"Não quique — movimento lento e completo." },
+          { nome:"Afundo com Halteres (Estacionário)", musculo:"Glúteos · Quadríceps", series:"3×12 cada perna", video:"https://www.youtube.com/embed/D7KaRcUTQeE", passos:["Em pé, halteres nas mãos","Dê um passo à frente e desça o joelho traseiro quase ao chão","Joelho da frente alinhado com o tornozelo","Volte e alterne as pernas"], dica:"Afundo fundo ativa muito mais glúteo que afundo raso.", erro:"Joelho da frente não passa da ponta do pé." },
+          { nome:"HIIT: Agachamento Jump", musculo:"Explosão · Condicionamento", series:"4×20s (descanso 40s)", video:"https://www.youtube.com/embed/CVaEhXotL7M", passos:["Agache profundamente","Exploda saltando verticalmente","Aterrisse suavemente em posição de agachamento","Repita no ritmo máximo por 20s"], dica:"HIIT ao final do treino de perna acelera o metabolismo.", erro:"Não aterrisse com os joelhos travados — absorva o impacto." }
         ]
       }
     }
   },
 
-  // ══════════════════════════════════════════════════════════
-  //  FEMININO — AVANÇADO
-  // ══════════════════════════════════════════════════════════
   F_avancado: {
     descricao: "Divisão especializada. Alta intensidade, técnicas avançadas e foco em hipertrofia glútea.",
     fichas: {
       A: {
         desc: "Glúteos Dia 1 — Máxima Ativação",
         exercicios: [
-          {
-            nome: "Hip Thrust com Barra — Pausa 3s",
-            musculo: "Glúteo Máximo",
-            series: "5×10",
-            video: "https://www.youtube.com/embed/LM8XHLYJoYs",
-            passos: ["Barra pesada com proteção","Ombros no banco","Suba e PAUSE 3s no topo contraindo o glúteo ao máximo","Desça controlando 3s também"],
-            dica: "Pausa elimina o impulso e força o músculo a trabalhar 100%.",
-            erro: "Não hiperextenda a lombar no topo."
-          },
-          {
-            nome: "Agachamento Bulgaro — Alta Carga",
-            musculo: "Glúteos · Quadríceps",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/2C-uNgKwPLE",
-            passos: ["Pé traseiro em banco alto","Halteres pesados ou barra no Smith","Desça profundamente","Pausa de 1s no fundo"],
-            dica: "É o exercício unilateral mais eficiente para glúteo.",
-            erro: "Não deixe o joelho da frente colapsar para dentro."
-          },
-          {
-            nome: "Stiff Unilateral — Alta Amplitude",
-            musculo: "Isquiotibiais · Glúteo Inferior",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/2SHsk9AitMA",
-            passos: ["Um halter pesado, perna de apoio","Desça o tronco profundamente","Eleve a perna traseira para contrabalancear","Contraia forte o glúteo para subir"],
-            dica: "Amplitude máxima = máximo alongamento do isquio.",
-            erro: "Não rotacione o quadril ao elevar a perna."
-          },
-          {
-            nome: "Leg Press Pisada Alta — Negativo Lento",
-            musculo: "Glúteos · Isquiotibiais",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: ["Pés altos e abertos","Empurre rápido (1s)","Desça em 5 segundos (excêntrico lento)","Pause 1s no fundo"],
-            dica: "Excêntrico lento maximiza o dano muscular (hipertrofia).",
-            erro: "Não bata o joelho no peito."
-          },
-          {
-            nome: "Agachamento com Elástico (BFR)",
-            musculo: "Glúteos · Quad — oclusão vascular",
-            series: "4×30",
-            video: "https://www.youtube.com/embed/rShCehTxFak",
-            passos: ["Elástico acima dos joelhos, carga leve","30 reps contínuas sem descanso","Foco na contração glútea em cada rep","Descanso de 30s entre séries"],
-            dica: "BFR com alta repetição gera crescimento muscular com carga leve.",
-            erro: "Não use carga pesada — o objetivo é congestão e oclusão."
-          },
-          {
-            nome: "Cadeira Abdutora — Superset Abdutora+Adutora",
-            musculo: "Glúteo Médio · Adutores",
-            series: "3×20+20",
-            video: "https://www.youtube.com/embed/Rdc8KGGlm3M",
-            passos: ["20 reps na abdutora","Imediatamente 20 reps na adutora","Sem descanso no superset","Repetir 3×"],
-            dica: "Superset antagonista maximiza a congestão no quadril.",
-            erro: "Não use carga excessiva no superset."
-          },
-          {
-            nome: "Donkey Kick com Caneleira Pesada",
-            musculo: "Glúteo Máximo",
-            series: "4×15 cada lado",
-            video: "https://www.youtube.com/embed/SJ1Xuz9D-ZQ",
-            passos: ["De quatro apoios, caneleira na perna","Eleve o joelho dobrado até 90° para cima","Contraia o glúteo forte no topo","Pause 2s antes de descer"],
-            dica: "Caneleira + pausa = exercício de isolamento muito eficiente.",
-            erro: "Não rotacione o quadril — movimento puro de extensão."
-          },
-          {
-            nome: "Fire Hydrant com Elástico",
-            musculo: "Glúteo Médio",
-            series: "3×20 cada lado",
-            video: "https://www.youtube.com/embed/aTF7G2MXWMI",
-            passos: ["De quatro apoios, elástico acima dos joelhos","Abra o joelho lateral (como um hidrante)","Pause no topo","Retorne controlando"],
-            dica: "Glúteo médio bem desenvolvido arredonda o quadril lateralmente.",
-            erro: "Não incline o tronco para o lado contrário."
-          },
-          {
-            nome: "RDL com Barra (Alta Carga)",
-            musculo: "Isquiotibiais · Glúteo · Lombar",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/1uDiW5--rAE",
-            passos: ["Barra pesada, joelhos levemente dobrados","Empurre o quadril para trás","Barra desce pelas coxas","Sinta o alongamento profundo do isquio","Contraia o glúteo na subida"],
-            dica: "RDL com barra permite maior sobrecarga que com halteres.",
-            erro: "Coluna arredondada com carga alta = lesão."
-          }
+          { nome:"Hip Thrust com Barra — Pausa 3s", musculo:"Glúteo Máximo", series:"5×10", video:"https://www.youtube.com/embed/LM8XHLYJoYs", passos:["Barra pesada com proteção","Ombros no banco","Suba e PAUSE 3s no topo contraindo o glúteo ao máximo","Desça controlando 3s também"], dica:"Pausa elimina o impulso e força o músculo a trabalhar 100%.", erro:"Não hiperextenda a lombar no topo." },
+          { nome:"Agachamento Bulgaro — Alta Carga", musculo:"Glúteos · Quadríceps", series:"4×8", video:"https://www.youtube.com/embed/2C-uNgKwPLE", passos:["Pé traseiro em banco alto","Halteres pesados ou barra no Smith","Desça profundamente","Pausa de 1s no fundo"], dica:"É o exercício unilateral mais eficiente para glúteo.", erro:"Não deixe o joelho da frente colapsar para dentro." },
+          { nome:"Stiff Unilateral — Alta Amplitude", musculo:"Isquiotibiais · Glúteo Inferior", series:"4×10", video:"https://www.youtube.com/embed/2SHsk9AitMA", passos:["Um halter pesado, perna de apoio","Desça o tronco profundamente","Eleve a perna traseira para contrabalancear","Contraia forte o glúteo para subir"], dica:"Amplitude máxima = máximo alongamento do isquio.", erro:"Não rotacione o quadril ao elevar a perna." },
+          { nome:"Leg Press Pisada Alta — Negativo Lento", musculo:"Glúteos · Isquiotibiais", series:"4×12", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Pés altos e abertos","Empurre rápido (1s)","Desça em 5 segundos (excêntrico lento)","Pause 1s no fundo"], dica:"Excêntrico lento maximiza o dano muscular (hipertrofia).", erro:"Não bata o joelho no peito." },
+          { nome:"Agachamento com Elástico (BFR)", musculo:"Glúteos · Quad — oclusão vascular", series:"4×30", video:"https://www.youtube.com/embed/rShCehTxFak", passos:["Elástico acima dos joelhos, carga leve","30 reps contínuas sem descanso","Foco na contração glútea em cada rep","Descanso de 30s entre séries"], dica:"BFR com alta repetição gera crescimento muscular com carga leve.", erro:"Não use carga pesada — o objetivo é congestão e oclusão." },
+          { nome:"Cadeira Abdutora — Superset Abdutora+Adutora", musculo:"Glúteo Médio · Adutores", series:"3×20+20", video:"https://www.youtube.com/embed/Rdc8KGGlm3M", passos:["20 reps na abdutora","Imediatamente 20 reps na adutora","Sem descanso no superset","Repetir 3×"], dica:"Superset antagonista maximiza a congestão no quadril.", erro:"Não use carga excessiva no superset." },
+          { nome:"Donkey Kick com Caneleira Pesada", musculo:"Glúteo Máximo", series:"4×15 cada lado", video:"https://www.youtube.com/embed/SJ1Xuz9D-ZQ", passos:["De quatro apoios, caneleira na perna","Eleve o joelho dobrado até 90° para cima","Contraia o glúteo forte no topo","Pause 2s antes de descer"], dica:"Caneleira + pausa = exercício de isolamento muito eficiente.", erro:"Não rotacione o quadril — movimento puro de extensão." },
+          { nome:"Fire Hydrant com Elástico", musculo:"Glúteo Médio", series:"3×20 cada lado", video:"https://www.youtube.com/embed/aTF7G2MXWMI", passos:["De quatro apoios, elástico acima dos joelhos","Abra o joelho lateral (como um hidrante)","Pause no topo","Retorne controlando"], dica:"Glúteo médio bem desenvolvido arredonda o quadril lateralmente.", erro:"Não incline o tronco para o lado contrário." },
+          { nome:"RDL com Barra (Alta Carga)", musculo:"Isquiotibiais · Glúteo · Lombar", series:"4×8", video:"https://www.youtube.com/embed/1uDiW5--rAE", passos:["Barra pesada, joelhos levemente dobrados","Empurre o quadril para trás","Barra desce pelas coxas","Sinta o alongamento profundo do isquio","Contraia o glúteo na subida"], dica:"RDL com barra permite maior sobrecarga que com halteres.", erro:"Coluna arredondada com carga alta = lesão." }
         ]
       },
       B: {
         desc: "Costas + Ombros + Bíceps",
         exercicios: [
-          {
-            nome: "Barra Fixa Assistida (ou com Elástico)",
-            musculo: "Dorsal · Bíceps",
-            series: "4×8",
-            video: "https://www.youtube.com/embed/eGo4IYlbE5g",
-            passos: ["Use elástico se necessário","Pegada pronada além dos ombros","Puxe até o queixo passar a barra","Cotovelos apontam para baixo","Desça completamente"],
-            dica: "Progressão: elástico grosso → fino → sem elástico.",
-            erro: "Não balance o corpo para subir."
-          },
-          {
-            nome: "Remada Unilateral Alta Carga",
-            musculo: "Dorsal · Rombóides",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/roCP_TJMiMQ",
-            passos: ["Apoio no banco, halter pesado","Puxe em linha reta até o quadril","Cotovelo aponta para trás","Contraia forte o dorsal"],
-            dica: "Sem apoio para o joelho recruta mais core também.",
-            erro: "Não gire o tronco para aumentar a carga."
-          },
-          {
-            nome: "Pulldown Pegada Neutra (Alça V)",
-            musculo: "Dorsal Médio",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/CAwf7n6Luuc",
-            passos: ["Alça V, pegada neutra","Puxe ao peito com cotovelos ao lado do tronco","Comprima o dorsal forte","Suba controlando"],
-            dica: "Pegada neutra reduz tensão nos pulsos.",
-            erro: "Não incline o tronco mais que necessário."
-          },
-          {
-            nome: "Face Pull com Corda (Alta Frequência)",
-            musculo: "Deltóide Posterior · Manguito",
-            series: "4×20",
-            video: "https://www.youtube.com/embed/rep-qVOkqgk",
-            passos: ["Polia na altura dos olhos","Puxe em direção ao rosto abrindo os cotovelos","Polegares atrás na posição final","Mantenha a tensão na rotação externa"],
-            dica: "Avançadas devem treinar face pull com alta frequência (2-3×/semana).",
-            erro: "Não use carga pesada — é exercício de saúde, não força."
-          },
-          {
-            nome: "Desenvolvimento Arnold",
-            musculo: "Deltóide completo · Rotação",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/6Z15_WdXmVw",
-            passos: ["Halteres à frente com palmas voltadas para o rosto","Ao empurrar, gire os pulsos para fora","Chegue ao topo com palmas para frente","Desça revertendo a rotação"],
-            dica: "Trabalha as 3 porções do deltóide em um só movimento.",
-            erro: "Não force a rotação — deve ser natural."
-          },
-          {
-            nome: "Elevação Lateral em Cabo (Unilateral)",
-            musculo: "Deltóide Lateral",
-            series: "4×15",
-            video: "https://www.youtube.com/embed/3VcKaXpzqRo",
-            passos: ["Cabo baixo, pule o lado de fora","Levante lateralmente com cotovelo levemente dobrado","Tensão constante do cabo ao longo de todo o movimento","Desça controlando"],
-            dica: "Cabo é biomecânicamente superior ao halter para deltóide lateral.",
-            erro: "Não encolha o trapézio no topo."
-          },
-          {
-            nome: "Rosca Inclinada com Halteres",
-            musculo: "Bíceps — porção longa",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/soxrZlIl35U",
-            passos: ["Banco a 45°, halteres pendurados","Suba supinando o pulso","Cotovelos ficam para trás do corpo","Posição de máximo alongamento"],
-            dica: "Alongamento máximo = máximo recrutamento da porção longa.",
-            erro: "Não jogue os cotovelos para frente."
-          },
-          {
-            nome: "Rosca Bayesian (Cabo Baixo)",
-            musculo: "Bíceps — tensão no alongamento",
-            series: "3×12",
-            video: "https://www.youtube.com/embed/2qYBWtejDiM",
-            passos: ["Polia baixa, de costas para a máquina","Dê passo à frente, cotovelo atrás do corpo","Suba contraindo o bíceps","Tensão máxima no ponto de alongamento"],
-            dica: "Pesquisas atuais mostram que treinar no alongamento maximiza hipertrofia.",
-            erro: "Não avance o cotovelo ao subir."
-          },
-          {
-            nome: "Tríceps Pulley Corda (Alta Carga)",
-            musculo: "Tríceps",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/vB5OHsJ3EME",
-            passos: ["Polia alta, corda","Cotovelos fixos ao lado","Empurre separando a corda no final","Retorne controlando"],
-            dica: "Tríceps forte = braços bem definidos.",
-            erro: "Cotovelos não devem sair do lugar."
-          }
+          { nome:"Barra Fixa Assistida (ou com Elástico)", musculo:"Dorsal · Bíceps", series:"4×8", video:"https://www.youtube.com/embed/eGo4IYlbE5g", passos:["Use elástico se necessário","Pegada pronada além dos ombros","Puxe até o queixo passar a barra","Cotovelos apontam para baixo","Desça completamente"], dica:"Progressão: elástico grosso → fino → sem elástico.", erro:"Não balance o corpo para subir." },
+          { nome:"Remada Unilateral Alta Carga", musculo:"Dorsal · Rombóides", series:"4×10", video:"https://www.youtube.com/embed/roCP_TJMiMQ", passos:["Apoio no banco, halter pesado","Puxe em linha reta até o quadril","Cotovelo aponta para trás","Contraia forte o dorsal"], dica:"Sem apoio para o joelho recruta mais core também.", erro:"Não gire o tronco para aumentar a carga." },
+          { nome:"Pulldown Pegada Neutra (Alça V)", musculo:"Dorsal Médio", series:"4×12", video:"https://www.youtube.com/embed/CAwf7n6Luuc", passos:["Alça V, pegada neutra","Puxe ao peito com cotovelos ao lado do tronco","Comprima o dorsal forte","Suba controlando"], dica:"Pegada neutra reduz tensão nos pulsos.", erro:"Não incline o tronco mais que necessário." },
+          { nome:"Face Pull com Corda (Alta Frequência)", musculo:"Deltóide Posterior · Manguito", series:"4×20", video:"https://www.youtube.com/embed/rep-qVOkqgk", passos:["Polia na altura dos olhos","Puxe em direção ao rosto abrindo os cotovelos","Polegares atrás na posição final","Mantenha a tensão na rotação externa"], dica:"Avançadas devem treinar face pull com alta frequência (2-3×/semana).", erro:"Não use carga pesada — é exercício de saúde, não força." },
+          { nome:"Desenvolvimento Arnold", musculo:"Deltóide completo · Rotação", series:"4×10", video:"https://www.youtube.com/embed/6Z15_WdXmVw", passos:["Halteres à frente com palmas voltadas para o rosto","Ao empurrar, gire os pulsos para fora","Chegue ao topo com palmas para frente","Desça revertendo a rotação"], dica:"Trabalha as 3 porções do deltóide em um só movimento.", erro:"Não force a rotação — deve ser natural." },
+          { nome:"Elevação Lateral em Cabo (Unilateral)", musculo:"Deltóide Lateral", series:"4×15", video:"https://www.youtube.com/embed/3VcKaXpzqRo", passos:["Cabo baixo, pule o lado de fora","Levante lateralmente com cotovelo levemente dobrado","Tensão constante do cabo ao longo de todo o movimento","Desça controlando"], dica:"Cabo é biomecânicamente superior ao halter para deltóide lateral.", erro:"Não encolha o trapézio no topo." },
+          { nome:"Rosca Inclinada com Halteres", musculo:"Bíceps — porção longa", series:"4×10", video:"https://www.youtube.com/embed/soxrZlIl35U", passos:["Banco a 45°, halteres pendurados","Suba supinando o pulso","Cotovelos ficam para trás do corpo","Posição de máximo alongamento"], dica:"Alongamento máximo = máximo recrutamento da porção longa.", erro:"Não jogue os cotovelos para frente." },
+          { nome:"Rosca Bayesian (Cabo Baixo)", musculo:"Bíceps — tensão no alongamento", series:"3×12", video:"https://www.youtube.com/embed/2qYBWtejDiM", passos:["Polia baixa, de costas para a máquina","Dê passo à frente, cotovelo atrás do corpo","Suba contraindo o bíceps","Tensão máxima no ponto de alongamento"], dica:"Pesquisas atuais mostram que treinar no alongamento maximiza hipertrofia.", erro:"Não avance o cotovelo ao subir." },
+          { nome:"Tríceps Pulley Corda (Alta Carga)", musculo:"Tríceps", series:"4×12", video:"https://www.youtube.com/embed/vB5OHsJ3EME", passos:["Polia alta, corda","Cotovelos fixos ao lado","Empurre separando a corda no final","Retorne controlando"], dica:"Tríceps forte = braços bem definidos.", erro:"Cotovelos não devem sair do lugar." }
         ]
       },
       C: {
         desc: "Pernas Completo + Abdômen Avançado",
         exercicios: [
-          {
-            nome: "Agachamento com Pausa",
-            musculo: "Quadríceps · Glúteos",
-            series: "5×5",
-            video: "https://www.youtube.com/embed/ultWZbUMPL8",
-            passos: ["Carga 10–15% menor que o normal","Agache até o fundo","PAUSE 3 segundos no fundo","Suba explosivamente"],
-            dica: "Pausa elimina o reflexo elástico — muito mais difícil.",
-            erro: "Não relaxe o core na pausa."
-          },
-          {
-            nome: "Leg Press Unilateral",
-            musculo: "Glúteos · Quadríceps",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/IZxyjW7MPJQ",
-            passos: ["Uma perna por vez na plataforma","Pé alto na plataforma","Desça profundamente","Empurre pelo calcanhar"],
-            dica: "Corrige desequilíbrios entre as pernas.",
-            erro: "Não deixe o joelho colapsar para dentro."
-          },
-          {
-            nome: "Hack Agachamento Pés Altos",
-            musculo: "Glúteos · Isquiotibiais",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/EdtxFSp_zSk",
-            passos: ["Pés altos na plataforma do Hack","Desça profundamente","Empurre pelos calcanhares","Glúteo forte no topo"],
-            dica: "Pés altos no hack = muito mais glúteo.",
-            erro: "Não trave o joelho na extensão."
-          },
-          {
-            nome: "Mesa Flexora — Excêntrico Lento",
-            musculo: "Isquiotibiais",
-            series: "4×10",
-            video: "https://www.youtube.com/embed/ELOCsoDSmrg",
-            passos: ["Suba em 1 segundo","Desça em 5 segundos","Controle total na descida","Pause 1s no fundo"],
-            dica: "Excêntrico lento = hipertrofia máxima nos isquiotibiais.",
-            erro: "Não solte a carga — controle total."
-          },
-          {
-            nome: "Afundo Caminhando com Halteres",
-            musculo: "Glúteos · Quadríceps",
-            series: "3×20 passos",
-            video: "https://www.youtube.com/embed/D7KaRcUTQeE",
-            passos: ["Halteres pesados nas mãos","Dê um passo longo à frente","Desça até o joelho traseiro quase tocar o chão","Avance com a outra perna"],
-            dica: "Alta amplitude no passo = mais recrutamento glúteo.",
-            erro: "Não incline o tronco para frente."
-          },
-          {
-            nome: "Elevação de Pernas na Barra",
-            musculo: "Core · Flexores do Quadril",
-            series: "4×12",
-            video: "https://www.youtube.com/embed/hdng3Nm1x_E",
-            passos: ["Pendurada na barra","Eleve as pernas retas até 90°","Desça controlando sem balançar","Mantenha o core tenso o tempo todo"],
-            dica: "Versão avançada do abdômen — exige muito controle.",
-            erro: "Não use impulso do corpo para elevar as pernas."
-          },
-          {
-            nome: "Ab Wheel em Pé (Progressão)",
-            musculo: "Core completo · Reto Abdominal",
-            series: "3×8",
-            video: "https://www.youtube.com/embed/sxHjqnr_5Q0",
-            passos: ["Em pé, roda no chão","Estenda quase horizontalmente","Puxe de volta com o abdômen","Core sempre contraído — lombar não pode afundar"],
-            dica: "Versão em pé é muito mais difícil — domine de joelhos primeiro.",
-            erro: "Lombar não pode afundar em nenhum momento."
-          },
-          {
-            nome: "Dragon Flag (Progressão)",
-            musculo: "Core completo — extremo",
-            series: "3×5",
-            video: "https://www.youtube.com/embed/njKXkuhY7_4",
-            passos: ["Deitada no banco, segure o banco atrás da cabeça","Eleve o corpo inteiro em posição reta","Desça controlando somente com o core","Mantenha o corpo reto como uma tábua"],
-            dica: "Um dos exercícios de core mais difíceis — progrida gradualmente.",
-            erro: "Não deixe o quadril dobrar — corpo deve estar reto."
-          },
-          {
-            nome: "Panturrilha em Pé — Volume Máximo",
-            musculo: "Gastrocnêmio · Sóleo",
-            series: "5×25",
-            video: "https://www.youtube.com/embed/gwLzBJYoWlI",
-            passos: ["Carga moderada, alto volume","Amplitude completa em cada rep","Pause 2s no topo","Desça até o alongamento máximo"],
-            dica: "5×25 é um dos protocolos mais eficientes para panturrilha.",
-            erro: "Quicar anula o exercício."
-          }
+          { nome:"Agachamento com Pausa", musculo:"Quadríceps · Glúteos", series:"5×5", video:"https://www.youtube.com/embed/ultWZbUMPL8", passos:["Carga 10–15% menor que o normal","Agache até o fundo","PAUSE 3 segundos no fundo","Suba explosivamente"], dica:"Pausa elimina o reflexo elástico — muito mais difícil.", erro:"Não relaxe o core na pausa." },
+          { nome:"Leg Press Unilateral", musculo:"Glúteos · Quadríceps", series:"4×12", video:"https://www.youtube.com/embed/IZxyjW7MPJQ", passos:["Uma perna por vez na plataforma","Pé alto na plataforma","Desça profundamente","Empurre pelo calcanhar"], dica:"Corrige desequilíbrios entre as pernas.", erro:"Não deixe o joelho colapsar para dentro." },
+          { nome:"Hack Agachamento Pés Altos", musculo:"Glúteos · Isquiotibiais", series:"4×12", video:"https://www.youtube.com/embed/EdtxFSp_zSk", passos:["Pés altos na plataforma do Hack","Desça profundamente","Empurre pelos calcanhares","Glúteo forte no topo"], dica:"Pés altos no hack = muito mais glúteo.", erro:"Não trave o joelho na extensão." },
+          { nome:"Mesa Flexora — Excêntrico Lento", musculo:"Isquiotibiais", series:"4×10", video:"https://www.youtube.com/embed/ELOCsoDSmrg", passos:["Suba em 1 segundo","Desça em 5 segundos","Controle total na descida","Pause 1s no fundo"], dica:"Excêntrico lento = hipertrofia máxima nos isquiotibiais.", erro:"Não solte a carga — controle total." },
+          { nome:"Afundo Caminhando com Halteres", musculo:"Glúteos · Quadríceps", series:"3×20 passos", video:"https://www.youtube.com/embed/D7KaRcUTQeE", passos:["Halteres pesados nas mãos","Dê um passo longo à frente","Desça até o joelho traseiro quase tocar o chão","Avance com a outra perna"], dica:"Alta amplitude no passo = mais recrutamento glúteo.", erro:"Não incline o tronco para frente." },
+          { nome:"Elevação de Pernas na Barra", musculo:"Core · Flexores do Quadril", series:"4×12", video:"https://www.youtube.com/embed/hdng3Nm1x_E", passos:["Pendurada na barra","Eleve as pernas retas até 90°","Desça controlando sem balançar","Mantenha o core tenso o tempo todo"], dica:"Versão avançada do abdômen — exige muito controle.", erro:"Não use impulso do corpo para elevar as pernas." },
+          { nome:"Ab Wheel em Pé (Progressão)", musculo:"Core completo · Reto Abdominal", series:"3×8", video:"https://www.youtube.com/embed/sxHjqnr_5Q0", passos:["Em pé, roda no chão","Estenda quase horizontalmente","Puxe de volta com o abdômen","Core sempre contraído — lombar não pode afundar"], dica:"Versão em pé é muito mais difícil — domine de joelhos primeiro.", erro:"Lombar não pode afundar em nenhum momento." },
+          { nome:"Dragon Flag (Progressão)", musculo:"Core completo — extremo", series:"3×5", video:"https://www.youtube.com/embed/njKXkuhY7_4", passos:["Deitada no banco, segure o banco atrás da cabeça","Eleve o corpo inteiro em posição reta","Desça controlando somente com o core","Mantenha o corpo reto como uma tábua"], dica:"Um dos exercícios de core mais difíceis — progrida gradualmente.", erro:"Não deixe o quadril dobrar — corpo deve estar reto." },
+          { nome:"Panturrilha em Pé — Volume Máximo", musculo:"Gastrocnêmio · Sóleo", series:"5×25", video:"https://www.youtube.com/embed/gwLzBJYoWlI", passos:["Carga moderada, alto volume","Amplitude completa em cada rep","Pause 2s no topo","Desça até o alongamento máximo"], dica:"5×25 é um dos protocolos mais eficientes para panturrilha.", erro:"Quicar anula o exercício." }
         ]
       }
     }
   }
 
-}; // fim do objeto treinos
-// ============================================================
-//  FUNÇÕES DE NAVEGAÇÃO
-// ============================================================
+};
+
 function mostrarTela(id) {
   document.querySelectorAll('.tela').forEach(t => t.classList.remove('ativa'));
   document.getElementById(id).classList.add('ativa');
@@ -1960,11 +707,7 @@ function irMobilidade() {
   ]);
 }
 
-// Inicializar breadcrumb
 atualizarBreadcrumb([{label:'📍 Início', fn:'irInicio()'}]);
 </script>
 </body>
 </html>
-
-
-
